@@ -3,176 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BV Shlokas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>BalVikas Shlokas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════
+       RESET & VARIABLES
+       ═══════════════════════════════════════════ */
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#fef1f6;--card-bg:rgba(255,255,255,0.92);--card-border:rgba(0,0,0,0.08);--card-shadow:0 2px 12px rgba(0,0,0,0.06);
-      --text-primary:#1a1a2e;--text-secondary:#3d3d56;--text-muted:#6b6b80;
-      --accent:#9333ea;--accent-light:rgba(147,51,234,0.08);--accent-text:#7e22ce;
-      --tooltip-bg:#1a1a2e;--tooltip-text:#f8f8ff;--tooltip-border:#3d3d56;
-      --tag-bg:rgba(0,0,0,0.05);--tag-text:#555;
-      --group1-accent:#db2777;--group2-accent:#2563eb;--group3-accent:#d97706;
-      --grad-start:#fce4ec;--grad-mid:#e3f2fd;--grad-end:#fff9c4;
+      --bg:#FAF6F1;--surface:#FFFFFF;--surface-raised:#FFFDFB;
+      --border:#E7E0D8;--border-subtle:#F0EBE4;
+      --text:#292524;--text-secondary:#57534E;--text-muted:#A8A29E;
+      --accent:#C2410C;--accent-soft:rgba(194,65,12,0.08);--accent-hover:#9A3412;
+      --saffron:#EA580C;
+      --shadow-xs:0 1px 2px rgba(41,37,36,0.04);
+      --shadow-sm:0 1px 3px rgba(41,37,36,0.06),0 1px 2px rgba(41,37,36,0.04);
+      --shadow-md:0 4px 12px rgba(41,37,36,0.08);
+      --shadow-lg:0 8px 24px rgba(41,37,36,0.1);
+      --radius:12px;--radius-lg:16px;
+      --font-serif:'Noto Serif Devanagari',Georgia,serif;
+      --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+      --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+      --space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:48px;--space-3xl:64px;
     }
     html.dark{
-      --bg:#0f0d1a;--card-bg:rgba(30,27,45,0.95);--card-border:rgba(255,255,255,0.08);--card-shadow:0 2px 12px rgba(0,0,0,0.3);
-      --text-primary:#f0eeff;--text-secondary:#c4bffd;--text-muted:#8a85a8;
-      --accent:#c084fc;--accent-light:rgba(192,132,252,0.12);--accent-text:#d8b4fe;
-      --tooltip-bg:#2a2640;--tooltip-text:#f0eeff;--tooltip-border:#4a4565;
-      --tag-bg:rgba(255,255,255,0.06);--tag-text:rgba(255,255,255,0.5);
-      --group1-accent:#f472b6;--group2-accent:#60a5fa;--group3-accent:#facc15;
-      --grad-start:#0f0d1a;--grad-mid:#13102a;--grad-end:#0f0d1a;
+      --bg:#1C1917;--surface:#292524;--surface-raised:#312E2B;
+      --border:#44403C;--border-subtle:#3B3835;
+      --text:#F5F5F4;--text-secondary:#D6D3D1;--text-muted:#78716C;
+      --accent:#FB923C;--accent-soft:rgba(251,146,60,0.1);--accent-hover:#FDBA74;
+      --saffron:#FB923C;
+      --shadow-xs:0 1px 2px rgba(0,0,0,0.2);
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.25),0 1px 2px rgba(0,0,0,0.2);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.3);
+      --shadow-lg:0 8px 24px rgba(0,0,0,0.4);
     }
-    body{font-family:'Inter','Noto Sans',sans-serif;
-      background:linear-gradient(160deg,var(--grad-start) 0%,var(--grad-mid) 50%,var(--grad-end) 100%);
-      background-attachment:fixed;color:var(--text-primary);
-      min-height:100vh;transition:background 0.4s,color 0.4s}
 
-    .theme-toggle{position:fixed;top:16px;right:16px;z-index:100;width:40px;height:40px;border-radius:50%;
-      border:1px solid var(--card-border);background:var(--card-bg);cursor:pointer;
-      display:flex;align-items:center;justify-content:center;transition:all 0.2s,transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);
-      -webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform}
-    .theme-toggle:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
-    .theme-toggle svg{width:18px;height:18px;stroke:var(--text-secondary);transition:stroke 0.2s,transform 0.4s cubic-bezier(0.34,1.56,0.64,1)}
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    body{
+      font-family:var(--font-sans);background:var(--bg);color:var(--text);
+      min-height:100vh;line-height:1.6;
+      transition:background 0.3s,color 0.3s;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    /* ═══════════════════════════════════════════
+       THEME TOGGLE
+       ═══════════════════════════════════════════ */
+    .theme-toggle{
+      position:fixed;top:20px;right:20px;z-index:100;width:36px;height:36px;border-radius:50%;
+      border:1px solid var(--border);background:var(--surface);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+      box-shadow:var(--shadow-xs);
+    }
+    .theme-toggle:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+    .theme-toggle:active{transform:scale(0.92)}
+    .theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .theme-toggle svg{width:16px;height:16px;stroke:var(--text-secondary);transition:stroke 0.2s}
     .theme-toggle:hover svg{stroke:var(--accent)}
-    .theme-hint{position:fixed;top:62px;right:16px;z-index:100;font-size:0.65rem;color:var(--text-muted);
-      background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:4px 10px;
-      pointer-events:none;white-space:nowrap}
-    html:not(.dark) .theme-toggle svg{transform:rotate(0deg)}
-    html.dark .theme-toggle svg{transform:rotate(180deg)}
+    .theme-hint{
+      position:fixed;top:62px;right:20px;z-index:100;font-size:0.6rem;color:var(--text-muted);
+      background:var(--surface);border:1px solid var(--border);border-radius:6px;
+      padding:3px 8px;pointer-events:none;white-space:nowrap;
+      animation:fadeIn 0.5s var(--ease) 1s both;
+    }
 
-    .hero{text-align:center;padding:40px 20px 24px}
-    .hero h1{font-family:'Noto Serif Devanagari',serif;font-size:2.5rem;font-weight:700;color:var(--text-primary);margin-bottom:6px}
-    .hero .subtitle{font-size:0.8rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase}
-    .ornament{display:flex;align-items:center;gap:12px;margin:16px auto 0;width:260px}
-    .ornament-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.5}
-    .ornament-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:0.5}
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero{text-align:center;padding:56px 24px 24px;animation:fadeUp 0.6s var(--ease) both}
+    .hero h1{
+      font-family:var(--font-serif);font-size:2.8rem;font-weight:700;
+      color:var(--text);margin-bottom:8px;line-height:1.2;
+    }
+    .hero .subtitle{
+      font-size:0.8rem;color:var(--text-muted);letter-spacing:0.12em;
+      text-transform:uppercase;font-weight:500;
+    }
+    .ornament{display:flex;align-items:center;gap:12px;margin:28px auto 0;width:180px}
+    .ornament-line{flex:1;height:1px;background:var(--border)}
+    .ornament-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:0.6}
 
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    /* ═══════════════════════════════════════════
+       SEARCH
+       ═══════════════════════════════════════════ */
+    .search-wrap{
+      max-width:480px;margin:24px auto 0;position:relative;
+      animation:fadeUp 0.5s var(--ease) 0.2s both;
+    }
+    .search-input{
+      width:100%;padding:12px 40px 12px 42px;border:1.5px solid var(--border);
+      border-radius:var(--radius);background:var(--surface);color:var(--text);
+      font-family:var(--font-sans);font-size:0.88rem;
+      transition:border-color 0.2s,box-shadow 0.2s;outline:none;
+      box-shadow:var(--shadow-xs);
+    }
+    .search-input::placeholder{color:var(--text-muted)}
+    .search-input:focus{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+    .search-icon{
+      position:absolute;left:14px;top:50%;transform:translateY(-50%);
+      width:16px;height:16px;stroke:var(--text-muted);pointer-events:none;
+      transition:stroke 0.2s;
+    }
+    .search-input:focus ~ .search-icon{stroke:var(--accent)}
+    .search-clear{
+      position:absolute;right:10px;top:50%;transform:translateY(-50%);
+      width:24px;height:24px;border:none;background:var(--border-subtle);
+      border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;
+      transition:background 0.15s;
+    }
+    .search-clear.visible{display:flex}
+    .search-clear:hover{background:var(--border)}
+    .search-clear svg{width:12px;height:12px;stroke:var(--text-muted)}
+    .search-results{
+      margin-top:8px;max-height:340px;overflow-y:auto;
+      border:1px solid var(--border);border-radius:var(--radius);
+      background:var(--surface);box-shadow:var(--shadow-md);
+      scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+    }
+    .search-results::-webkit-scrollbar{width:6px}
+    .search-results::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+    .search-results:empty{display:none}
+    .search-result-item{
+      padding:14px 16px;cursor:pointer;transition:background 0.15s;
+      border-bottom:1px solid var(--border-subtle);
+    }
+    .search-result-item:last-child{border-bottom:none}
+    .search-result-item:hover{background:var(--accent-soft)}
+    .search-result-title{
+      font-family:var(--font-serif);font-size:0.95rem;font-weight:600;
+      color:var(--text);margin-bottom:2px;line-height:1.3;
+    }
+    .search-result-meta{font-size:0.72rem;color:var(--text-muted)}
+    .search-result-snippet{
+      font-size:0.78rem;color:var(--text-secondary);margin-top:4px;
+      line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    }
+    .search-no-results{
+      padding:24px 16px;text-align:center;font-size:0.82rem;color:var(--text-muted);
+    }
 
-    .container{max-width:900px;margin:0 auto;padding:0 16px 40px}
+    /* ═══════════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════════ */
+    .container{max-width:860px;margin:0 auto;padding:0 var(--space-lg) var(--space-xl)}
+    #app{animation:fadeIn 0.3s var(--ease)}
 
-    .group-heading{font-family:'Noto Serif Devanagari',serif;font-size:1.5rem;font-weight:700;color:var(--text-primary);
-      margin:32px 0 10px;padding-top:24px;border-top:1px solid var(--card-border)}
+    /* ═══════════════════════════════════════════
+       GROUP CARDS
+       ═══════════════════════════════════════════ */
+    .group-cards{
+      display:grid;grid-template-columns:1fr;gap:12px;
+      max-width:860px;margin:0 auto;padding:0 var(--space-lg) var(--space-xl);
+    }
+    .group-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+      padding:var(--space-xl);cursor:pointer;
+      transition:box-shadow 0.25s var(--ease),border-color 0.25s;
+      box-shadow:var(--shadow-xs);display:flex;flex-direction:column;
+      animation:fadeUp 0.5s var(--ease) both;
+    }
+    .group-card:nth-child(1){animation-delay:0.05s}
+    .group-card:nth-child(2){animation-delay:0.1s}
+    .group-card:nth-child(3){animation-delay:0.15s}
+    .group-card:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}
+    .group-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .group-card .card-name{
+      font-family:var(--font-serif);font-size:1.3rem;font-weight:700;
+      color:var(--text);margin-bottom:2px;line-height:1.3;
+    }
+    .group-card .card-age{
+      font-size:0.7rem;font-weight:500;color:var(--accent);
+      text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;
+    }
+    .group-card .card-desc{font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:16px}
+    .group-card .card-explore{
+      display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500;
+      color:var(--accent);transition:gap 0.2s;margin-top:auto;
+    }
+    .group-card:hover .card-explore{gap:10px}
+    .group-card .card-explore svg{width:14px;height:14px;transition:transform 0.2s}
+    .group-card:hover .card-explore svg{transform:translateX(2px)}
+
+    /* ═══════════════════════════════════════════
+       GROUP DETAIL
+       ═══════════════════════════════════════════ */
+    .group-heading{
+      font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--text);
+      margin:var(--space-xl) 0 var(--space-sm);padding-top:var(--space-lg);
+      border-top:1px solid var(--border);line-height:1.3;
+    }
     .group-heading:first-child{border-top:none;margin-top:0;padding-top:0}
-    .group-desc{font-size:0.78rem;color:var(--text-muted);margin-bottom:16px}
+    .group-desc{font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--space-lg);line-height:1.6}
+    .year-heading{
+      font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text);
+      margin:var(--space-xl) 0 var(--space-xs);padding-left:12px;
+      border-left:2px solid var(--accent);display:flex;align-items:center;gap:8px;
+    }
+    .year-heading::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:0.6;flex-shrink:0}
+    .year-desc{font-size:0.75rem;color:var(--text-muted);margin-bottom:var(--space-md);padding-left:12px}
+    .sloka-meaning{
+      font-size:0.85rem;color:var(--text-secondary);line-height:1.7;
+      margin-top:var(--space-md);padding:14px 18px;
+      background:var(--accent-soft);border-radius:var(--radius);
+      border-left:2px solid var(--accent);
+    }
 
-    .year-heading{font-family:'Noto Serif Devanagari',serif;font-size:1.1rem;font-weight:600;color:var(--text-primary);
-      margin:24px 0 4px;padding-left:12px;border-left:3px solid var(--accent);display:flex;align-items:center;gap:8px}
-    .year-heading::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
-    .year-desc{font-size:0.72rem;color:var(--text-muted);margin-bottom:12px;padding-left:12px}
-    .sloka-meaning{font-size:0.82rem;color:var(--text-secondary);line-height:1.6;margin-top:12px;padding:12px 16px;
-      background:var(--accent-light);border-radius:10px;border-left:3px solid var(--accent)}
+    /* ═══════════════════════════════════════════
+       SLOKA CARDS
+       ═══════════════════════════════════════════ */
+    .sloka-card{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+      padding:28px 28px 24px;margin-bottom:var(--space-md);
+      transition:border-color 0.2s;box-shadow:var(--shadow-xs);
+    }
+    .sloka-card:hover{border-color:var(--saffron)}
+    .sloka-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;gap:12px}
+    .sloka-title{font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:var(--text);line-height:1.3}
+    .sloka-category{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;font-weight:500}
+    .sloka-text{
+      font-family:var(--font-serif);font-size:1.15rem;line-height:2;
+      color:var(--text);text-align:center;margin:16px 0;padding:20px 0;
+      border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);
+      white-space:pre-line;letter-spacing:0.02em;
+    }
 
-    .sloka-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;
-      padding:28px 28px 24px;margin-bottom:16px;transition:all 0.25s;box-shadow:var(--card-shadow)}
-    .sloka-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
-    .sloka-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:12px}
-    .sloka-title{font-family:'Noto Serif Devanagari',serif;font-size:1.3rem;font-weight:700;color:var(--text-primary);line-height:1.3}
-    .sloka-category{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px}
-
+    /* ═══════════════════════════════════════════
+       AUDIO
+       ═══════════════════════════════════════════ */
     .sloka-audio{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    .audio-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--accent);
-      background:var(--accent-light);display:flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:all 0.25s;flex-shrink:0}
+    .audio-btn{
+      width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent);
+      background:var(--accent-soft);display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background 0.15s,transform 0.15s;flex-shrink:0;
+    }
     .audio-btn:hover{background:var(--accent);transform:scale(1.05)}
-    .audio-btn svg{fill:var(--accent);width:14px;height:14px;transition:fill 0.25s}
+    .audio-btn:active{transform:scale(0.92)}
+    .audio-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .audio-btn svg{fill:var(--accent);width:13px;height:13px;transition:fill 0.15s}
     .audio-btn:hover svg{fill:#fff}
     .audio-controls{display:none;align-items:center;gap:8px;flex:1;max-width:200px}
     .audio-controls.visible{display:flex}
-    .audio-progress{width:100%;height:3px;-webkit-appearance:none;appearance:none;
-      background:var(--card-border);border-radius:2px;outline:none;cursor:pointer}
-    .audio-progress::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;
-      background:var(--accent);cursor:pointer;border:none;box-shadow:0 0 4px rgba(217,119,6,0.4)}
-    .audio-progress::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+    .audio-progress{width:100%;height:2px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:1px;outline:none;cursor:pointer}
+    .audio-progress::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+    .audio-progress::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
     .audio-time{font-size:0.6rem;color:var(--text-muted);white-space:nowrap}
 
-    .sloka-divider{height:1px;background:var(--card-border);margin-bottom:14px}
-
-    .sloka-text{font-family:'Noto Serif Devanagari',serif;font-size:1.2rem;line-height:2.2;
-      color:var(--text-primary);text-align:center;margin-bottom:12px;white-space:pre-line;letter-spacing:0.02em;
-      text-shadow:0 0.5px 0 rgba(0,0,0,0.05)}
-
-    .tooltip-bubble{position:fixed;z-index:2000;background:var(--tooltip-bg);color:var(--tooltip-text);
-      border:1px solid var(--tooltip-border);border-radius:10px;padding:10px 14px;font-family:'Inter',sans-serif;
-      font-size:0.82rem;line-height:1.5;max-width:min(26rem,calc(100vw - 24px));min-width:10rem;
-      pointer-events:none;opacity:0;visibility:hidden;transition:opacity 0.15s,visibility 0.15s;
-      box-shadow:0 8px 30px rgba(0,0,0,0.3);text-align:left;white-space:normal}
+    /* ═══════════════════════════════════════════
+       TOOLTIP
+       ═══════════════════════════════════════════ */
+    .tooltip-bubble{
+      position:fixed;z-index:2000;background:var(--text);color:var(--bg);
+      border-radius:var(--radius);padding:10px 14px;
+      font-family:var(--font-sans);font-size:0.82rem;line-height:1.55;
+      max-width:min(24rem,calc(100vw - 24px));min-width:8rem;
+      pointer-events:none;opacity:0;visibility:hidden;
+      transition:opacity 0.12s,visibility 0.12s;
+      box-shadow:0 8px 24px rgba(0,0,0,0.2);text-align:left;white-space:normal;
+    }
     .tooltip-bubble.show{opacity:1;visibility:visible}
 
+    /* ═══════════════════════════════════════════
+       BUTTONS
+       ═══════════════════════════════════════════ */
+    .back-btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 14px;margin-bottom:var(--space-lg);
+      background:transparent;border:1px solid var(--border);border-radius:8px;cursor:pointer;
+      color:var(--text-secondary);font-size:0.82rem;font-family:var(--font-sans);
+      transition:border-color 0.15s,color 0.15s;
+    }
+    .back-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .back-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .back-btn svg{width:15px;height:15px;stroke:currentColor}
+    .back-to-top{
+      position:fixed;bottom:20px;right:20px;z-index:100;width:40px;height:40px;border-radius:50%;
+      border:1px solid var(--border);background:var(--surface);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);
+      opacity:0;visibility:hidden;transform:translateY(8px);
+      transition:opacity 0.25s,visibility 0.25s,transform 0.25s,border-color 0.2s;
+    }
+    .back-to-top.visible{opacity:1;visibility:visible;transform:none}
+    .back-to-top:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
+    .back-to-top:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .back-to-top svg{width:16px;height:16px;stroke:var(--text-secondary);transition:stroke 0.2s}
+    .back-to-top:hover svg{stroke:var(--accent)}
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer{
+      text-align:center;font-size:0.7rem;color:var(--text-muted);
+      margin-top:var(--space-xl);padding:var(--space-lg) 0 var(--space-xl);
+      letter-spacing:0.06em;text-transform:uppercase;border-top:1px solid var(--border);
+    }
+
+    /* ═══════════════════════════════════════════
+       GROUP PAGE NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav-btn{
+      padding:6px 14px;border:1px solid var(--border);border-radius:8px;
+      background:transparent;color:var(--text-secondary);font-size:0.78rem;
+      font-family:var(--font-sans);cursor:pointer;transition:border-color 0.15s,color 0.15s;
+    }
+    .nav-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .nav-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .sloka-count{
+      font-size:0.7rem;font-weight:500;color:var(--text-muted);
+      text-transform:uppercase;letter-spacing:0.06em;margin-left:8px;
+    }
+    .group-nav{
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      margin-top:20px;
+    }
+    .nav-btn:disabled{opacity:0.3;cursor:default;pointer-events:none}
+
+    /* ═══════════════════════════════════════════
+       TOP NAV (Group Pages)
+       ═══════════════════════════════════════════ */
+    .top-nav{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:var(--space-lg);
+    }
+    .top-nav-links{display:flex;gap:8px;align-items:center}
+    .nav-link{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:10px 20px;border:1.5px solid var(--border);border-radius:var(--radius);
+      background:var(--surface);color:var(--text);font-size:0.85rem;font-weight:500;
+      font-family:var(--font-sans);cursor:pointer;
+      transition:all 0.2s var(--ease);box-shadow:var(--shadow-xs);
+    }
+    .nav-link:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+    .nav-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .nav-link svg{width:14px;height:14px;flex-shrink:0}
+    .nav-home{border-style:dashed}
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — MOBILE
+       ═══════════════════════════════════════════ */
     @media(max-width:600px){
-      .hero{padding:28px 16px 16px}
-      .hero h1{font-size:1.8rem}
-      .hero .subtitle{font-size:0.7rem;letter-spacing:0.1em}
-      .ornament{width:180px;gap:8px}
-      .container{padding:0 12px 32px}
-      .group-heading{font-size:1.2rem;margin:24px 0 8px;padding-top:16px}
-      .group-desc{font-size:0.72rem;margin-bottom:12px}
-      .sloka-card{padding:18px 16px 16px;border-radius:12px;margin-bottom:12px}
-      .sloka-card:hover{box-shadow:var(--card-shadow)}
+      .hero{padding:44px 16px 16px}
+      .hero h1{font-size:2rem}
+      .hero .subtitle{font-size:0.72rem;letter-spacing:0.08em}
+      .ornament{width:140px}
+      .container{padding:0 16px 32px}
+      .group-heading{font-size:1.15rem;margin:24px 0 6px;padding-top:20px}
+      .group-desc{font-size:0.78rem}
+      .sloka-card{padding:20px 16px 18px;border-radius:var(--radius);margin-bottom:12px}
       .sloka-header{flex-direction:column;gap:8px}
       .sloka-title{font-size:1.1rem}
       .sloka-audio{width:100%}
       .audio-controls{max-width:none;flex:1}
-      .sloka-text{font-size:1.05rem;line-height:2}
-      .sloka-text::after{content:'\a  Tap words for meaning';white-space:pre;display:block;font-family:'Inter',sans-serif;
-        font-size:0.6rem;color:var(--text-muted);letter-spacing:0.04em;margin-top:4px;font-style:italic;opacity:0.7;
-        font-weight:400}
-      .sloka-divider{margin-bottom:10px}
-      .theme-toggle{top:12px;right:12px;width:36px;height:36px}
-      .theme-toggle svg{width:16px;height:16px}
-      .theme-hint{top:54px;right:12px;font-size:0.6rem;padding:3px 8px}
-      .back-to-top{bottom:16px;right:16px;width:40px;height:40px}
-      .tooltip-bubble{max-width:calc(100vw - 16px);min-width:8rem;padding:8px 12px;font-size:0.78rem}
-      .group-cards{padding:0 12px 32px;gap:16px}
-      .group-card{padding:24px 20px;border-radius:14px}
+      .sloka-text{font-size:1.05rem;line-height:1.9;padding:16px 0}
+      .sloka-text::after{content:'\a  Tap words for meaning';white-space:pre;display:block;font-family:var(--font-sans);
+        font-size:0.6rem;color:var(--text-muted);letter-spacing:0.04em;margin-top:6px;font-style:italic;opacity:0.6;font-weight:400}
+      .theme-toggle{top:12px;right:12px;width:32px;height:32px}
+      .theme-toggle svg{width:14px;height:14px}
+      .theme-hint{top:50px;right:12px;font-size:0.55rem;padding:2px 6px}
+      .back-to-top{bottom:12px;right:12px;width:36px;height:36px}
+      .tooltip-bubble{max-width:calc(100vw - 16px);min-width:7rem;padding:8px 12px;font-size:0.78rem}
+      .group-cards{padding:0 16px var(--space-lg);gap:10px}
+      .group-card{padding:20px}
+      .search-wrap{margin:16px 16px 0}
+      .search-results{max-height:280px}
     }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET
+       ═══════════════════════════════════════════ */
     @media(min-width:601px) and (max-width:900px){
-      .hero h1{font-size:2rem}
-      .group-cards{grid-template-columns:repeat(2,1fr);gap:16px}
-      .group-card{padding:28px 24px}
+      .hero h1{font-size:2.2rem}
+      .group-cards{grid-template-columns:repeat(2,1fr);gap:var(--space-md)}
+      .group-card{padding:24px}
       .sloka-card{padding:24px 22px 20px}
     }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — DESKTOP
+       ═══════════════════════════════════════════ */
     @media(min-width:901px){
-      .group-cards{grid-template-columns:repeat(3,1fr);gap:24px}
-      .group-card{padding:36px 28px}
+      .group-cards{grid-template-columns:repeat(3,1fr);gap:var(--space-md)}
+      .group-card{padding:28px}
     }
-    .footer{text-align:center;font-size:0.65rem;color:var(--text-muted);margin-top:24px;padding:16px 0 20px;
-      letter-spacing:0.08em;text-transform:uppercase}
 
-    #app{animation:fadeInUp 0.4s ease-out}
-    .sloka-audio .audio-btn:active{transform:scale(0.95)}
-
-    @keyframes bounceIn{0%{transform:translateY(10px);opacity:0}50%{transform:translateY(-4px);opacity:1}100%{transform:translateY(0);opacity:1}}
-    .back-to-top{position:fixed;bottom:24px;right:24px;z-index:100;width:44px;height:44px;border-radius:50%;
-      border:1px solid var(--card-border);background:var(--card-bg);cursor:pointer;
-      display:flex;align-items:center;justify-content:center;box-shadow:var(--card-shadow);
-      opacity:0;visibility:hidden;transform:translateY(10px);transition:all 0.3s}
-    .back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);animation:bounceIn 0.5s ease-out}
-    .back-to-top:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
-    .back-to-top svg{width:18px;height:18px;stroke:var(--text-secondary);transition:stroke 0.2s}
-    .back-to-top:hover svg{stroke:var(--accent)}
-
-    .group-cards{display:grid;grid-template-columns:1fr;gap:20px;max-width:1200px;margin:0 auto;padding:0 16px 40px;animation:fadeInUp 0.6s ease-out both}
-    .group-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;
-      padding:32px 28px;cursor:pointer;transition:all 0.25s;box-shadow:var(--card-shadow);text-align:center;
-      border-left:4px solid var(--card-border)}
-    .group-card:nth-child(1){border-left-color:var(--group1-accent);background:linear-gradient(135deg,rgba(219,39,119,0.06),var(--card-bg))}
-    .group-card:nth-child(2){border-left-color:var(--group2-accent);background:linear-gradient(135deg,rgba(37,99,235,0.06),var(--card-bg))}
-    .group-card:nth-child(3){border-left-color:var(--group3-accent);background:linear-gradient(135deg,rgba(217,119,6,0.06),var(--card-bg))}
-    .group-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.08)}
-    .group-card .age-badge{display:inline-block;font-size:0.6rem;font-weight:600;color:var(--tag-text);background:var(--tag-bg);
-      padding:2px 8px;border-radius:20px;margin-bottom:8px;letter-spacing:0.04em;text-transform:uppercase;position:relative}
-    .group-card h2{font-family:'Noto Serif Devanagari',serif;font-size:1.4rem;font-weight:700;color:var(--text-primary);margin-bottom:8px}
-    .group-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
-
-    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;margin-bottom:20px;
-      background:transparent;border:1px solid var(--card-border);border-radius:10px;cursor:pointer;
-      color:var(--text-secondary);font-size:0.82rem;transition:all 0.2s}
-    .back-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
-    .back-btn svg{width:16px;height:16px;stroke:currentColor;transition:stroke 0.2s}
+    /* ═══════════════════════════════════════════
+       ACCESSIBILITY
+       ═══════════════════════════════════════════ */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important}
+    }
   </style>
 </head>
 <body>
@@ -183,9 +409,15 @@
   <div class="theme-hint" id="themeHint">Tap to switch theme</div>
 
   <div class="hero" id="hero">
-    <h1>BV Shlokas</h1>
+    <h1>BalVikas Shlokas</h1>
     <p class="subtitle">Sacred Verses &middot; Word by Word</p>
     <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot"></div><div class="ornament-line"></div></div>
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search shlokas..." autocomplete="off" aria-label="Search shlokas">
+      <svg class="search-icon" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <button class="search-clear" id="searchClear" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg></button>
+      <div class="search-results" id="searchResults"></div>
+    </div>
   </div>
 
   <div id="app"></div>
@@ -210,100 +442,100 @@
       {id:'group1',name:'Group I',desc:'Prayers, silent sitting, bhajans, and stories for young learners (Ages 6-9).',
       years:[
         {name:'Year I',desc:'Prayers',slokas:[
-          {title:"Aumkaaram Bindu",category:"Prayer",audio:"https://sssbalvikas.in/wp-content/uploads/2020/02/omkaram.mp3",shloka:"Aumkaaram Bindu Samyuktam\nNityam Dhyaayanti Yoginah\nKaamadam Mokshadam Chaiva\nAumkaaraaya Namo Namah",lines:[[["Aumkaaram","Omkara - the sacred syllable Aum"],["Bindu","The dot that accompanies the Aum symbol"],["Samyuktam","Combined with"]],[["Nityam","Daily, always"],["Dhyaayanti","Meditate upon"],["Yoginah","Saints, ascetics"]],[["Kaama","Desire"],["Dam","Gives, grants"],["Mokshadam","Liberation, salvation"],["Chaiva","And"]],[["Aumkaaraaya","Unto the sacred Aum"],["Namo","Salutations"],["Namah","I bow down"]]],meaning:"The ascetics always meditate upon the Aumkar with the (Bindu) dot. We bow down to that eternal Aumkar which grants our desires and gives us liberation."},
-          {title:"Gurur Brahmaa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/03/gurur_brahma.mp3",shloka:"Gurur Brahmaa Gurur Vishnu\nGurur Devo Maheshvarah\nGuruh Saakshaat Para Brahma\nTasmai Shree Gurave Namah",lines:[[["Gurur","A true Guru"],["Brahmaa","Like Lord Brahma"]],[["Gurur","The Guru"],["Vishnu","Like Lord Vishnu"]],[["Gurur Devo","The Guru is like the Lord"],["Maheshvarah","Like Lord Maheshwara"]],[["Guruh Saakshaat","The Guru who is verily"],["Para Brahma","Greater than the Trinity Gods"]],[["Tasmai","Unto that"],["Shree Gurave","Noble teacher"],["Namah","Salutations"]]],meaning:"Salutations to that noble teacher who is Brahma, Vishnu, Maheshwara and who is verily the supreme being."},
-          {title:"Vakratunda",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/02/vakra_tunda.mp3",shloka:"Vakratunda Mahaa Kaaya\nSuryakoti Samaprabha\nNirvighnam Kurume Deva\nSarvaakaaryeshu Sarvadaa",lines:[[["Vakratunda","One with a twisted trunk"],["Mahaakaaya","One with a huge, mighty body"]],[["Suryakoti","Lustre of crores of Suns"],["Samaprabha","Effulgence outshines crores of Suns"]],[["Nirvighnam","Remove all obstacles"],["Kurume","I pray to Thee, O Lord"],["Deva","O Lord"]],[["Sarvaakaaryeshu","In all works, actions"],["Sarvadaa","Always, at all times"]]],meaning:"O Lord with a twisted trunk and a huge, mighty body, whose lustre is equivalent to crores of Suns, I pray to Thee always remove all obstacles from my good actions."},
-          {title:"Karaagre Vasate",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/karagre_vasate.mp3",shloka:"Karaagre Vasate Lakshmi\nKaramadhye Saraswati\nKaramoole Tu Govindah\nPrabhaate Kara Darshanam",lines:[[["Karaagre","Tip of the fingers"],["Vasate Lakshmi","Resides Goddess Lakshmi"]],[["Karamadhye","The centre of the palm"],["Saraswati","Goddess of knowledge and learning"]],[["Karamoole Tu","In the base of the palm"],["Govindah","Lord Govinda"]],[["Prabhaate","In the early morning"],["Kara Darshanam","I look at my palms"]]],meaning:"On the tip of the fingers resides Lakshmi. In the centre of the palm, Saraswati resides and in the base of the palm resides Lord Govinda. Therefore, I look at my palms early in the morning."},
-          {title:"Asato Maa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/asatoma.mp3",shloka:"Asato Maa Sad Gamaya\nTamaso Maa Jyotir Gamaya\nMrutyormaa Amrutam Gamaya\nOm Shantih Shantih Shantih",lines:[[["Asato","From that which is not eternal"],["Maa","Me"],["Sad Gamaya","Let me go towards truth"]],[["Tamaso","From darkness"],["Jyotir Gamaya","To Light, luminous, brightness"]],[["Mrutyor","From death"],["Amrutam","Which is everlasting, immortal"]],[["Om Shantih","Peace for body, mind, and soul"]]],meaning:"Lead me from Untruth to Truth, from Darkness to Light, from Death to Immortality."},
-          {title:"Harir Daata",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/harir_data.mp3",shloka:"Harir Daata Harir Bhokta\nHarir Annam Prajaapatih\nHarir Vipra Shareerastu\nBhunkte Bhojayate Harih",lines:[[["Hari","Lord Vishnu"],["Daata","The giver"]],[["Harir Bhokta","Hari is the enjoyer"]],[["Harir Annam","Hari is the food"],["Prajaapatih","The one who protects creation"]],[["Harir Vipra","All creations are part of Hari's body"],["Shareerastu","In the body"]],[["Bhunkte","Consume"],["Bhojayate","The food that I eat"],["Harih","The one who eats and feeds"]]],meaning:"Hari, the Lord of all beings, is the giver, the enjoyer and the food itself."},
-          {title:"Twameva Maataa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/05/tvameva_mata.mp3",shloka:"Twameva Maataa Cha Pitaa Twameva\nTwameva Bandhuscha Sakhaa Twameva\nTwameva Vidya Dravinam Twameva\nTwameva Sarvam Mama Deva Deva",lines:[[["Twameva","You alone"],["Maataa","Mother"],["Cha","And"],["Pitaa","Father"]],[["Twameva","You alone"],["Bandhuh","Relatives"],["Cha","And"],["Sakhaa","Friend"]],[["Twameva","You alone"],["Vidya","Education, intelligence"],["Dravinam","Wealth, power"]],[["Twameva","You alone"],["Sarvam Mama","All of mine"],["Deva Deva","My God of Gods"]]],meaning:"Lord! You are my mother, father, relative, friend, knowledge, wealth, my all, my God of Gods."},
-          {title:"Om Sahanaavavatu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sahana_Vavatu.mp3",shloka:"Om Sahanaavavatu Sahanau Bhunaktu\nSahaveeryam Karavaavahai\nTejasvinaavadheetamastu\nMaa Vidvishaavahai Om Shantih",lines:[[["Saha","Both"],["Nau","Us"],["Avatu","May He protect"]],[["Saha","Both"],["Nau","Us"],["Bhunaktu","May He nourish"]],[["Saha","Together"],["Veeryam","Valour, strength, courage"],["Karavaavahai","May we work together"]],[["Tejasvi","Brilliant, powerful"],["Nau","For us"],["AdHEETam","What is studied"],["Astu","Let it be"]],[["Maa","May we not"],["Vidvishaavahai","Hate one another"]],[["Om Shantih","Peace for body, mind, and soul"]]],meaning:"May the Lord protect us both. May He nourish us both. May we work together with great vigour. May our studies shine. May we not hate one another. Let there be peace."}
+          {title:"Aumkaaram Bindu",category:"Prayer",audio:"https://sssbalvikas.in/wp-content/uploads/2020/02/omkaram.mp3",shloka:"Aumkaaram Bindu Samyuktam\nNityam Dhyaayanti Yoginah\nKaamadam Mokshadam Chaiva\nAumkaaraaya Namo Namah",lines:[["Aumkaaram Bindu Samyuktam","Aum which is written with Chandra and Bindu"],["Nityam","Daily"],["Dhyaayanti","Meditate"],["Yoginah","Saints, ascetics. A yogi is a person who remembers the presence of God in all fellow beings"],["Kaama","Desire"],["Dam","Gives, grants"],["Mokshadam","Destruction of maya or removal of delusion"],["Chaiva","And"],["Aumkaaraaya Namo Namah","I do namaskar to that Om"]],meaning:"The ascetics always meditate upon the Aumkar with the (Bindu) dot. We bow down to that eternal Aumkar which grants our desires and gives us liberation (salvation). (The Aumkar written with a dot signifies that we are Bindus (drops) of that Aumkar from which we have come. Aum is the sound symbol of God. The Bindu represented by the individualized Jiva Atma, is united with the Universal Paramatma represented by the formless Aum. The yogis contemplate on this eternal relationship)."},
+          {title:"Gurur Brahmaa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/03/gurur_brahma.mp3",shloka:"Gurur Brahmaa Gurur Vishnu\nGurur Devo Maheshvarah\nGuruh Saakshaat Para Brahma\nTasmai Shree Gurave Namah",lines:[["Gurur","A true Guru is one who knows the truth by experience and whose daily activities, words, thoughts reflect this revelation"],["Brahmaa","The Guru is like Lord Brahma because he creates the good habits in children"],["Vishnu","He is like Lord Vishnu because he protects the good qualities in his students"],["Gurur Devo Maheshvarah","He is like Lord Maheshwara because he destroys the evil moods and bad qualities in them"],["Guruh Saakshaat Para Brahma","Because a sincere Guru has to do all the three functions of the Trinity Gods, he is considered greater or more sacred than them"],["Tasmai Shree Gurave Namah","Salutations to that noble teacher"]],meaning:"Salutations to that noble teacher who is Brahma Vishnu, Maheshwara and who is verily the supreme being."},
+          {title:"Vakratunda",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/02/vakra_tunda.mp3",shloka:"Vakratunda Mahaa Kaaya\nSuryakoti Samaprabha\nNirvighnam Kurume Deva\nSarvaakaaryeshu Sarvadaa",lines:[["Vakratunda","Twisted trunk"],["Mahaakaaya","Huge, mighty body"],["Suryakoti","Equivalent to lustre of crores of Sun"],["Samaprabha","The effulgence of His intelligence outshines crores of Sun"],["Nirvighnam Kurume","Remove all obstacles"],["Deva","O Lord"],["Sarvaakaaryeshu Sarvadaa","Always and in all works (actions)"]],meaning:"O Lord with a twisted trunk and a huge, mighty body, whose lustre is equivalent to that of crores of Suns (whose intelligence always outshines crores of Suns), I pray to Thee, O Lord, always remove all obstacles from the good actions that I perform."},
+          {title:"Karaagre Vasate",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/karagre_vasate.mp3",shloka:"Karaagre Vasate Lakshmi\nKaramadhye Saraswati\nKaramoole Tu Govindah\nPrabhaate Kara Darshanam",lines:[["Karaagre","Front portion of the palm, i.e. tip of the fingers"],["Vasate Lakshmi","Resides Goddess of Wealth, Lakshmi"],["Karamadhye","The middle or center of the palm"],["Saraswati","Goddess of knowledge, Learning"],["Karamoole Tu Govindah","In the base, Vishnu (God who protects and fosters every being)"],["Prabhaate","In the early morning when we wake up from sleep"],["Kara Darshanam","Look at my palms"]],meaning:"On the tip of the fingers resides Lakshmi, the Goddess of Wealth. In the centre of the palm, Saraswati, the Goddess of knowledge, learning resides and in the base of the palm resides Lord Govinda the protector of all beings. Therefore, thinking or visualizing in this manner, I look at my palms, early in the morning."},
+          {title:"Asato Maa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/asatoma.mp3",shloka:"Asato Maa Sad Gamaya\nTamaso Maa Jyotir Gamaya\nMrutyormaa Amrutam Gamaya\nOm Shantih Shantih Shantih",lines:[["Asato","From that which is not eternal"],["Maa","Me"],["Sad Gamaya","Let me go towards truth"],["Tamaso","From darkness"],["Jyotir Gamaya","To Light, luminous, brightness, grandeur"],["Mrutyor","From death"],["Amrutam","Which is everlasting, immortal"],["Om Shantih Shantih Shantih","Peace for the physical body, for the mind, and for the soul or Atma"]],meaning:"Lead me, from Untruth to Truth, from Darkness to Light, from Death to Immortality."},
+          {title:"Harir Daata",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/harir_data.mp3",shloka:"Harir Daata Harir Bhokta\nHarir Annam Prajaapatih\nHarir Vipra Shareerastu\nBhunkte Bhojayate Harih",lines:[["Hari","Lord Vishnu, Hari is one who takes away all the sufferings"],["Daata","Giver"],["Harir Bhokta","Hari is the enjoyer"],["Harir Annam","Hari is the food"],["Praja","Progeny or creation"],["Patih","The one who protects"],["Harir Vipra Shareerastu","All creations are part of that powerful body of the Lord"],["Bhunkte","Consume"],["Bhojayate","The food that I eat"]],meaning:"Hari, the Lord of all beings, is the giver, the enjoyer and the food itself. The body of the Vipra (one who has become illumined with the brightness of Divine knowledge and wisdom) is Hari. Hari is the one who eats and also the one who feeds."},
+          {title:"Twameva Maataa",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/05/tvameva_mata.mp3",shloka:"Twameva Maataa Cha Pitaa Twameva\nTwameva Bandhuscha Sakhaa Twameva\nTwameva Vidya Dravinam Twameva\nTwameva Sarvam Mama Deva Deva",lines:[["Twameva","You alone"],["Maata","Mother"],["Cha","And"],["Pitaa","Father"],["Bandhu","Relatives or kinsmen"],["Sakhaa","Friend"],["Vidya","Trained intelligence, education"],["Dravinam","Wealth (of strength, valour, and power)"],["Sarvam","All"],["Mama Deva Deva","My God of Gods"]],meaning:"Lord! You are my mother, You are my father, You are my relative or Kinsmen, You are my friend, You are my knowledge, You are my wealth (of strength, valour, and power) You are my all, my God of Gods."},
+          {title:"Om Sahanaavavatu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sahana_Vavatu.mp3",shloka:"Om Sahanaavavatu Sahanau Bhunaktu\nSahaveeryam Karavaavahai\nTejasvinaavadheetamastu\nMaa Vidvishaavahai Om Shantih",lines:[["Saha","Both"],["Nau","Us"],["Avatu","May He protect"],["Bhunaktu","May He nourish"],["Veeryam","Valour or power, strength, courage"],["Karavaavahai","To make bright, illuminate"],["Tejasvi","Brilliant, powerful; beneficial"],["Nau","For us"],["AdHEETam","What is studied"],["Astu","Let it be"],["Maa Vidvishaavahai","May we not hate one another"],["Shantih","Peace"]],meaning:"May the Lord protect us both (the teacher and the student). May He nourish us both. May we work together with great vigour. May our studies shine and be effective. May we not hate one another. Let there be peace and peace and peace."}
         ]},
         {name:'Year II',desc:'Prayers',slokas:[
-          {title:"Aum Sarva Mangala",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sarvamangala_Mangalye.mp3",shloka:"Om Sarva Mangala Mangalye\nShive Sarvaartha Saadhike\nSharanye Tryambake Gauri\nNaaraayani Namostute",lines:[["Om Sarva Mangala","All auspicious"],["Mangalye","Auspicious"],["Shive","Spouse of Lord Shiva"],["Sarvaartha Saadhike","Giver of success in all endeavors"],["Sharanye","The one to whom all have surrendered"],["Tryambake","Goddess with three eyes"],["Gauri","The one with fair complexion"],["Naaraayani","Sister of Lord Vishnu"],["Namostute","I bow down"]],meaning:"Thou art the all auspicious spouse of Shiva, the bountiful. I prostrate at Thy feet. O, the feminine aspect of the Lord with three eyes, sister of Lord Vishnu, one with fair complexion. This prayer is addressed to Mother Parvati."},
-          {title:"Sri Sathya Sai Suprabhatam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Suprabhatam.mp3",shloka:"Eeshwarambaa sutah sreeman\nPoorvaa sandhyaa pravartatey\nUttishtha Sathya Saisha\nKartavyam daivamaahnikam",lines:[["Eeshwarambaa sutah","Son of Eashwarambaa"],["sreeman","Resplendent majestic one"],["Poorvaa sandhyaa pravartatey","Dawn is breaking in the East"],["Uttishtha","Arise"],["Sathya Sai","O Lord Sathya Sai"],["Kartavyam","Duties"],["daivamaahnikam","Daily divine tasks"]],meaning:"O son of Eashwarambaa! O resplendent majestic one! Dawn is breaking in the East. The daily tasks of divinity which You have undertaken are at hand. Therefore, awake, O Lord Sathya Sai."},
-          {title:"Om Sarve Vai",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sarve_Vai.mp3",shloka:"Om Sarve Vai Sukhinah Santu\nSarve Santu Niraamayaa\nSarve Bhadraani Pashyantu\nMaa Kaschid Dukkham Aapnuyaat\nOm Shantih Shantih Shantih",lines:[["Sarve Vai Sukhinah Santu","May all be happy"],["Sarve Santu Niraamayaa","May all be without disease"],["Sarve Bhadraani Pashyantu","May all see auspiciousness"],["Maa Kaschid Dukkham Aapnuyaat","May none experience sorrow"],["Om Shantih Shantih Shantih","Om Peace Peace Peace"]],meaning:"May all be happy. May all be healthy. May all see auspiciousness. May none suffer. May there be peace to the body, mind and soul."},
-          {title:"Namastestu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Namastestu.mp3",shloka:"Namastestu Mahaamaaye\nShripeetthe Sura Poojite\nShankha Chakra Gadaa Haste\nShri Mahaalakshmi Namostute",lines:[["Namastestu","I bow down"],["Mahaamaaye","Great enchantress"],["Shripeetthe Sura Poojite","Seated on a lotus, worshipped by gods"],["Shankha Chakra Gadaa Haste","Holding conch, discus and mace"],["Shri Mahaalakshmi Namostute","I bow to Goddess Mahalakshmi"]],meaning:"I bow down at Thy Lotus feet. Thou art the destroyer of delusion and the source of prosperity, who is worshipped by all the Gods, who is holding in her hands, the conch-shell, the discus and the club. O Mahalakshmi, I bow down to Thy Lotus feet."},
-          {title:"Karacharana",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Karacharana.mp3",shloka:"Kara Charana Kritam Vaak\nKaayajam Karmajam Vaa\nShravana Nayanajam Vaa\nMaanasam Vaa Aparaadham\nVihitamavihitam Vaa\nSarvametat Kshamasva\nJaya Jaya Karunaabdhe\nShri Mahaadeva Shambho",lines:[["Kara Charana Kritam Vaak","Actions done by hands feet and speech"],["Kaayajam Karmajam Vaa","By body or by actions"],["Shravana Nayanajam Vaa","By ears or eyes"],["Maanasam Vaa Aparaadham","Or offences by the mind"],["Vihitamavihitam Vaa","Known or unknown"],["Sarvametat Kshamasva","Forgive all these"],["Jaya Jaya Karunaabdhe","Victory to the ocean of mercy"],["Shri Mahaadeva Shambho","O great Lord Shiva"]],meaning:"O Lord, kindly forgive the wrong actions done knowingly or unknowingly, either through my hands, feet, speech, body, ears, eyes, or by my mind. Glory unto Thee, O Lord, who is the ocean of compassion."},
-          {title:"Yaa Kundendu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/yakundendu.mp3",shloka:"Yaa Kundendu Tushaara Haara Dhavalaa\nYaa Shubhra Vastraavrutaa\nYaa Veenaavaradanda Mandita Karaa\nYaa Shweta Padmaasana\nYaa Brahmaachyuta Shankara Prabhrutibhih\nDevaih Sadaa Vanditaa\nSaa Maam Paatu Saraswati Bhagavatee\nNihshesha Jaadyaa Pahaa",lines:[["Yaa Kundendu Tushaara Haara Dhavalaa","Who is white as jasmine, moon, snow and pearls"],["Yaa Shubhra Vastraavrutaa","Who is draped in pure white"],["Yaa Veenaavaradanda Mandita Karaa","Whose hand is adorned with the veena"],["Yaa Shweta Padmaasana","Who is seated on a white lotus"],["Yaa Brahmaachyuta Shankara Prabhrutibhih","Who is worshipped by Brahma, Vishnu and Shankara"],["Devaih Sadaa Vanditaa","Always worshipped by the gods"],["Saa Maam Paatu Saraswati Bhagavatee","May Goddess Saraswati protect me"],["Nihshesha Jaadyaa Pahaa","Who removes all ignorance"]],meaning:"May Goddess Saraswati, the destroyer of ignorance, protect us. She who is fair like the Kunda flower, dressed in pure white, seated on a white lotus, hand playing veena, worshipped by Brahma, Vishnu and Shankara."},
-          {title:"Kailasaraana",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/kailasaraana.mp3",shloka:"Kailaasa Raamaana Vasaana Vaganam\nShailendra Tanaya Tathaa\nYevam Vishnu Pranamya Deham\nRaghunandam Aham Bhaje",lines:[["Kailaasa Raamaana","Rama who dwells in Kailasa"],["Vasaana Vaganam","Who rides on a vehicle"],["Shailendra Tanaya","Son of the mountain king"],["Yevam Vishnu Pranamya","Saluting Vishnu thus"],["Deham Raghunandam Aham Bhaje","I worship the body of Rama"]],meaning:"I worship Lord Rama, the dweller of Kailasa, the son of the mountain king, and the one who has the form of Vishnu."},
-          {title:"Ashtothram [1-27]",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/ashtothram.mp3",shloka:"Om Namah Shaantaaya Prabhaavaaya\nSureeshaya Vibhu Shaktimate",lines:[["Om Namah Shaantaaya","Salutations to the peaceful one"],["Prabhaavaaya Sureeshaya","To the powerful lord of gods"],["Vibhu Shaktimate","To the omnipotent one"]],meaning:"Names of Lord Vishnu - first 27 names of the 108 holy names."}
+          {title:"Aum Sarva Mangala",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sarvamangala_Mangalye.mp3",shloka:"Om Sarva Mangala Mangalye\nShive Sarvaartha Saadhike\nSharanye Tryambake Gauri\nNaaraayani Namostute",lines:[["Om Sarva Mangala Mangalye","All auspicious"],["Shive","Spouse of Lord Shiva"],["Sarvaartha Saadhike","All kinds of wealth, Giver of success"],["Sharanye","The one to whom all have surrendered"],["Tryambake","Goddess Parvathi, the feminine aspect of the Lord with three eyes"],["Gauri","The one with fair complexion"],["Naaraayani","Sister of Lord Vishnu"],["Namostute","I bow down to such a one"]],meaning:"Thou art the all auspicious spouse of Shiva, the bountiful. I prostrate at Thy feet. O, the feminine aspect of the Lord with three eyes, sister of Lord Vishnu, one with fair complexion. This prayer is addressed to Mother Parvati."},
+          {title:"Sri Sathya Sai Suprabhatam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Suprabhatam.mp3",shloka:"Eeshwarambaa sutah sreeman\nPoorvaa sandhyaa pravartatey\nUttishtha Sathya Saisha\nKartavyam daivamaahnikam",lines:[["Eeshwarambaa sutah","O son of Eashwarambaa! O resplendent majestic one!"],["sreeman","Dawn is breaking in the East."],["Poorvaa sandhyaa pravartatey","Therefore, awake, O Lord Sathya Sai."],["Uttishtha Sathya Saisha","The daily tasks of divinity which You have undertaken are at hand."],["Kartavyam daivamaahnikam","Awake, awake, O Lord of Parthi (Puttaparthi)"],["Uttishthottishtha Partheesha","Awake, O Lord of the entire world."],["Uttishtha Jagateepatey","Awake, O Compassionate One"],["Uttishtha Karunaapoorna","And bestow auspiciousness on the world."],["Loka Mangala Siddhaye","Those who recite this Suprabhaatam (Awakening Hymn) day after day"],["Suprabhaatamidam punyam","(with faith and devotion)"],["Ye pathanti diney diney","will attain the highest Abode (the Goal)"],["Tey vishanti param dhaama","having obtained knowledge and wisdom."],["Jnaana vijnaana shobhitaah","Thou art the all auspicious Divine Guru"],["Mangalam Gurudevaaya","The Bestower of Wisdom"],["Mangalam Jnaanadaayine","The Resident of Parthi"],["Mangalam Parthivaasaaya","The Resident of Parthi"],["Mangalam Sathya Saayine","Salutations to You, O Bhagawan Sri Sathya Sai Baba."]],meaning:"O son of Eashwarambaa! O resplendent majestic one! Dawn is breaking in the East. The daily tasks of divinity which You have undertaken are at hand. Therefore, awake, O Lord Sathya Sai. Awake, awake, O Lord of Parthi (Puttaparthi), Awake, O Lord of the entire world. Awake, O Compassionate One, And bestow auspiciousness on the world. Those who recite this Suprabhaatam (Awakening Hymn) day after day, (with faith and devotion) will attain the highest Abode (the Goal), having obtained knowledge and wisdom. Thou art the all auspicious Divine Guru, The Bestower of Wisdom, The Resident of Parthi. Salutations to You, O Bhagawan Sri Sathya Sai Baba."},
+          {title:"Om Sarve Vai",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Sarve_Vai.mp3",shloka:"Om Sarve Vai Sukhinah Santu\nSarve Santu Niraamayaa\nSarve Bhadraani Pashyantu\nMaa Kaschid Dukkham Aapnuyaat\nOm Shantih Shantih Shantih",lines:[["Sarve Vai","All"],["Sukhinah","Happiness or joy"],["Santu","Let them be"],["Niraamayah","Without faults or defects"],["Bhadraani","Only good things"],["Pashyantu","May they all see"],["Maa Kaschid","No one"],["Dukkham","Sorrows"],["Aapnuyaat","May obtain, may get"]],meaning:"May all be happy. May all be healthy. May all see auspiciousness. May none suffer. May there be peace to the body, mind and soul."},
+          {title:"Namastestu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Namastestu.mp3",shloka:"Namastestu Mahaamaaye\nShripeetthe Sura Poojite\nShankha Chakra Gadaa Haste\nShri Mahaalakshmi Namostute",lines:[["Namastestu","I bow down to such a one"],["Mahaa Maaye","Great, Remover or destroyer of delusion"],["Shri Peetthe","Wealth, prosperity, Seated upon"],["Sura Poojite","Devas, Gods, Worshipped by"],["Shankha","The conch shell which represents sound"],["Chakra","The wheel, which represents the wheel of time"],["Gada","Mace. It represents strength"],["Haste","In the hands"],["Mahaa Lakshmi","The feminine aspect of Purusha which means His grace. It is good luck, success, splendour, lustre"],["Namostute","I bow down to you"]],meaning:"I bow down at Thy Lotus feet. Thou art the destroyer of delusion and the source of prosperity, who is worshipped by all the Gods, who is holding in her hands, the conch-shell, the discus and the club. O Mahalakshmi, I bow down to Thy Lotus feet."},
+          {title:"Karacharana",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/Karacharana.mp3",shloka:"Kara Charana Kritam Vaak\nKaayajam Karmajam Vaa\nShravana Nayanajam Vaa\nMaanasam Vaa Aparaadham\nVihitamavihitam Vaa\nSarvametat Kshamasva\nJaya Jaya Karunaabdhe\nShri Mahaadeva Shambho",lines:[["Kara","Hands (which perform the action of doing something)"],["Charana","Feet (which perform the action of walking)"],["Kritam","Actions done by"],["VaaK","Speech, the power of speech"],["Kaayajam","Body or the bodily actions"],["Karmajam","The results of all the deeds"],["Vaa","Or, and, also"],["Shravana","The action of hearing through the ears"],["Nayanajam","Born out of eyes"],["Maanasam","Of the mind"],["Aparaadham","Undesirable actions or harmful actions"],["Vihitam","Good, helpful, desirable actions"],["Avihitam","Undesirable or harmful actions"],["Sarvam","All"],["Etat","These"],["Kshamasva","May be forgiven by you"],["Jaya","Victory"],["Karunaabdhe","The Ocean of Mercy"],["Shri Mahadeva","The all powerful Lord"],["Shambho","One who is the Ocean of compassion"]],meaning:"O, Lord, kindly forgive the wrong actions done knowingly or unknowingly, either through my Karmendriyas (organs of actions – hands, feet, speech) or through my Jnanendriyas (organs of perception – ears, eyes) or by my mind. Glory unto Thee, O Lord, who is the ocean of compassion, kindness."},
+          {title:"Yaa Kundendu",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/yakundendu.mp3",shloka:"Yaa Kundendu Tushaara Haara Dhavalaa\nYaa Shubhra Vastraavrutaa\nYaa Veenaavaradanda Mandita Karaa\nYaa Shweta Padmaasana\nYaa Brahmaachyuta Shankara Prabhrutibhih\nDevaih Sadaa Vanditaa\nSaa Maam Paatu Saraswati Bhagavatee\nNihshesha Jaadyaa Pahaa",lines:[["Yaa","The one who"],["Kunda","Kind of jasmine flower"],["Indu","Moon"],["Tushaara","Fresh, dewdrops, cool, clean"],["Haara","A garland or a necklace"],["Dhavalaa","White or pure"],["Shubhra","White, spotless, pure, also shining bright, radiant"],["Vastra","Clothes"],["Aavruta","To cover"],["Veena","Veena, Lute – musical instrument"],["Vara","Most beautiful one"],["Danda","Neck of the Lute"],["Mandita","Decorated, Glorified"],["Kara","By the hand"],["Shweta","White"],["Padma","Lotus"],["Aasana","Seat"],["Brahma","Lord Brahma"],["Achyuta","One who can never be defeated (Lord Vishnu's name)"],["Shankara","One who gives eternal bliss (Lord Shiva's name)"],["Prabhrutibhih","One who has lustre, light, or brightness by the three Gods"],["Sadaa Vandita","Always bowed by"],["Paatu","May I be protected"],["Saraswati","Goddess of Knowledge or speech"],["Bhagavatee","Goddess"],["Nihshesha Jaadyapahaa","To remove the ignorance completely from my mind"]],meaning:"May Goddess Saraswati, the destroyer of ignorance, protect us. She, who is fair like the Kunda flower, like the moon, the snow, and the necklaces of pearls, who is dressed in pure white clothes, and who is seated on a white lotus, her hand playing veena and to whom hymns are sung by the Gods even Brahma, Vishnu, and Shankar, O Goddess of Knowledge, remove the ignorance completely from our mind."},
+          {title:"Kailasaraana",category:"Prayer",audio:"",shloka:"Kailasa Raana Shiva Chandra Mouli\nPhaneendra Maathaa Mukutee Zalaalee\nKarunya Sindhu Bhava Dukha Haaree\nThujaveena Maja Kona Taaree",lines:[["Kailasa","Mount Kailas"],["Raana","Lord Master, owner, King"],["Shiva","Lord Shiva, the giver of auspiciousness"],["Chandra","Moon shining with lustre, white"],["Mouli","Matted hair"],["Phaneendra","The king of serpents"],["Maathaa","Head, forehead"],["Mukutee","The one who has worn a crown"],["Zalaalee","Shining, giving out light or a glow"],["Karunya","The one full of mercy"],["Sindhu","Ocean, sea"],["Bhava Dukha Haaree","Remover of sorrows"],["Thujaveena","Without you"],["Maja","To me"],["Kona","Who else"],["Taaree","Protector"]],meaning:"O Lord Shiva, who is seated on the Mount Kailash, whose forehead is decorated with the moon and the king of serpents as a crown, who is the ocean of Mercy and who is the remover of delusion, you alone can protect me. I surrender to Thee."},
+          {title:"Ashtothram [1-27]",category:"Prayer",audio:"",shloka:"Om Namah Shaantaaya Prabhaavaaya\nSureeshaya Vibhu Shaktimate",lines:[["Om Namah Shaantaaya","Salutations to the peaceful one"],["Prabhaavaaya Sureeshaya","To the powerful lord of gods"],["Vibhu Shaktimate","To the omnipotent one"]],meaning:"The first 27 of the 108 holy names of Lord Vishnu, chanted to invoke His divine blessings and grace."}
         ]},
         {name:'Year III',desc:'Prayers',slokas:[
-          {title:"Shaantaakaaram Bhujaga",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/shaantaakaaram.mp3",shloka:"Shaantaakaaram Bhujagashayanam\nPadmanaabham Suresham\nVishvaadhaarana Gagana Sadrisham\nMeghavarnam Shubhaanugram",lines:[["Shaantaakaaram","One who is serene"],["Bhujagashayanam","One who reclines on serpent"],["Padmanaabham","One with lotus navel"],["Suresham","Lord of all"],["Vishvaadhaarana Gagana Sadrisham","Vast as the sky"],["Meghavarnam Shubhaanugram","Dark as clouds, auspicious and gracious"]],meaning:"Lord Vishnu who is serene in form, who reclines on the serpent, who has lotus on his navel, who is the lord of all, who is the basis of the universe, who is vast like the sky, who is dark as clouds."},
-          {title:"Vedaanuddharate",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/vedaanuddharate.mp3",shloka:"Vedanta Vedyam Punaravirbhootam\nBhujanga Yagna Sutharam\nPuranam Vedaanuddharate Bhagavan",lines:[["Vedanta Vedyam","Knower of Vedanta"],["Punaravirbhootam","Reincarnated"],["Bhujanga Yagna Sutharam","Son of serpent sacrifice"],["Puranaanam Vedaanuddharate","Uplifts the ancient Vedas"],["Bhagavan","The Lord"]],meaning:"The Lord who uplifts the Vedas and the Vedanta, who is the son of Yagnavalkya, who is the ancient one."},
+          {title:"Shaantaakaaram Bhujaga",category:"Prayer",audio:"",shloka:"Shaantaakaaram Bhujagashayanam\nPadmanaabham Suresham\nVishvaadhaarana Gagana Sadrisham\nMeghavarnam Shubhaanugram\nLakshmi Kaantam Kamala Nayanan\nYogibhir Dhyaanagamyam\nVande Vishnum\nBhava Bhaya Haram\nSarva Lokaika Naatham",lines:[["Shaantaakaaram","The giver of peace or peace personified"],["Bhujaga shayanam","The Lord who sleeps on the serpent couch"],["Padmanaabham","The lotus arising out of the Navel of Lord Vishnu"],["Suresham","The God of good ones, the most Divine"],["Vishvaadhaaram","The whole and sole supporter of the universe"],["Gagana Sadrusham","The one who is as expansive as the sky"],["Megha","Cloud"],["Varnam","Nature or colour"],["Shubhaangam","The one who is beautiful"],["Lakshmi Kaantam","The one who is the owner of Lakshmi (Lakshmi personifies good luck, success, splendour, lustre)"],["Kamala Nayanan","The lotus-eyed one"],["Yogibhir Dhyaanagamyam","The one whom the yogis constantly meditate upon"],["Vande Vishnum","I bow down to Lord Vishnu who is omnipresent"],["Bhava","Worldly, delusion"],["Bhaya","Fear, danger"],["Haram","Remover of delusion"],["Sarva Lokaika Naatham","He is the only one who is the leader of all the beings of the world"]],meaning:"We bow down to the Master of the Universe, Lord Vishnu who is ever peaceful, who lies on the great serpent bed, who has lotus arising from His navel, who is the Lord of the Devas, the supporter of the entire Universe, who is all pervading as the sky, who is of the hue of the clouds, of fascinating beauty, the beloved of Lakshmi, who is lotus eyed, who dwells in the heart of the Yogis, who can be approached and perceived through meditation and who is the destroyer of fear of birth and death."},
+          {title:"Vedaanuddharate",category:"Prayer",audio:"",shloka:"Vedanta Vedyam Punaravirbhootam\nBhujanga Yagna Sutharam\nPuranam Vedaanuddharate Bhagavan",lines:[["Vedanta Vedyam","Knower of Vedanta"],["Punaravirbhootam","Reincarnated"],["Bhujanga Yagna Sutharam","Son of serpent sacrifice"],["Puranaanam Vedaanuddharate","Uplifts the ancient Vedas"],["Bhagavan","The Lord"]],meaning:"The Lord who uplifts the Vedas and the Vedanta, who is the son of Yagnavalkya, who is the ancient one."},
           {title:"Manojavam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/manojavam.mp3",shloka:"Manojavam Marut Tulyavegam\nJitendriyam Buddhi Mataam Varishtham\nVataatmajam Vaaayu Putram\nNamami Veera Hanumantam",lines:[["Manojavam Marut Tulyavegam","Swift as the mind, fast as the wind"],["Jitendriyam Buddhi Mataam Varishtham","Master of the senses, most intelligent"],["Vataatmajam Vaaayu Putram","Son of the wind god"],["Namami Veera Hanumantam","I bow to the brave Hanuman"]],meaning:"I bow to the valiant Hanuman, who is swift as the mind, fast as the wind, master of the senses, most intelligent, son of the wind god."},
-          {title:"Vande Devam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/vande-devam.mp3",shloka:"Vande Devam Umaapatim Suragurum\nVande Jagatkaranam\nVande Pannagabhooshanam\nShashidharam Vande Pashaankusham",lines:[["Vande Devam Umaapatim","I bow to the Lord who is Uma's consort"],["Suragurum","Teacher of the gods"],["Vande Jagatkaranam","I bow to the cause of the universe"],["Vande Pannagabhooshanam","I bow to the one adorned with serpents"],["Shashidharam Vande Pashaankusham","I bow to the crescent moon bearer with noose and goad"]],meaning:"I bow to Lord Shiva, the consort of Uma, the teacher of the gods, the cause of the universe, adorned with serpents, bearing the crescent moon, holding the noose and goad."},
-          {title:"Gayatri Mantram",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/09/gayathri_manthram.mp3",shloka:"Om Bhur Bhuvas Suvah\nTatsavitur Varenyam\nBhargo Devasya Dheemahi\nDhiyo Yo Nah Prachodayaat",lines:[["Om Bhur Bhuvas Suvah","Om Earth, Heaven and the middle realm"],["Tatsavitur Varenyam","That divine light most excellent"],["Bhargo Devasya Dheemahi","We meditate upon the glory of that divine being"],["Dhiyo Yo Nah Prachodayaat","May He inspire and illuminate our minds"]],meaning:"We meditate upon the divine light of the Creator. May He illuminate our minds and inspire our understanding."},
-          {title:"Poorvam Raama",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/poorvam_rama.mp3",shloka:"Poorvam Rama Poorvam Harih\nPoorvam Madhavo Murari\nPoorvam Govinda Poorvam Harih\nPoorvam Narayana Sadaa",lines:[["Poorvam Rama Poorvam Harih","Rama came first, Hari came first"],["Poorvam Madhavo Murari","Madhava came first, enemy of Mura"],["Poorvam Govinda Poorvam Harih","Govinda came first, Hari came first"],["Poorvam Narayana Sadaa","Narayana was always first"]],meaning:"Rama came first, Hari came first, Madhava came first, the enemy of Mura came first, Govinda came first, Hari came first, Narayana was always first."},
-          {title:"Ashtothram [28-54]",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/ashtothram.mp3",shloka:"Om Adbhutaya Namah\nOm Kamalapatrakshaaya Namah",lines:[["Om Adbhutaya Namah","Salutations to the wonderful one"],["Om Kamalapatrakshaaya Namah","Salutations to the one with lotus-petal eyes"]],meaning:"Names of Lord Vishnu - names 28 to 54 of the 108 holy names."}
+          {title:"Vande Devam",category:"Prayer",audio:"",shloka:"Vande Devam Umaapatim Suragurum\nVande Jagatkaranam\nVande Pannagabhooshanam\nShashidharam Vande Pashaankusham",lines:[["Vande Devam Umaapatim","I bow to the Lord who is Uma's consort"],["Suragurum","Teacher of the gods"],["Vande Jagatkaranam","I bow to the cause of the universe"],["Vande Pannagabhooshanam","I bow to the one adorned with serpents"],["Shashidharam Vande Pashaankusham","I bow to the crescent moon bearer with noose and goad"]],meaning:"I bow to Lord Shiva, the consort of Uma, the teacher of the gods, the cause of the universe, adorned with serpents, bearing the crescent moon, holding the noose and goad."},
+          {title:"Gayatri Mantram",category:"Prayer",audio:"",shloka:"Om Bhur Bhuvas Suvah\nTatsavitur Varenyam\nBhargo Devasya Dheemahi\nDhiyo Yo Nah Prachodayaat",lines:[["Om Bhur Bhuvas Suvah","Om Earth, Heaven and the middle realm"],["Tatsavitur Varenyam","That divine light most excellent"],["Bhargo Devasya Dheemahi","We meditate upon the glory of that divine being"],["Dhiyo Yo Nah Prachodayaat","May He inspire and illuminate our minds"]],meaning:"We meditate upon the divine light of the Creator. May He illuminate our minds and inspire our understanding."},
+          {title:"Poorvam Raama",category:"Prayer",audio:"",shloka:"Poorvam Rama Poorvam Harih\nPoorvam Madhavo Murari\nPoorvam Govinda Poorvam Harih\nPoorvam Narayana Sadaa",lines:[["Poorvam Rama Poorvam Harih","Rama came first, Hari came first"],["Poorvam Madhavo Murari","Madhava came first, enemy of Mura"],["Poorvam Govinda Poorvam Harih","Govinda came first, Hari came first"],["Poorvam Narayana Sadaa","Narayana was always first"]],meaning:"Rama came first, Hari came first, Madhava came first, the enemy of Mura came first, Govinda came first, Hari came first, Narayana was always first."},
+          {title:"Ashtothram [28-54]",category:"Prayer",audio:"",shloka:"Om Adbhutaya Namah\nOm Kamalapatrakshaaya Namah",lines:[["Om Adbhutaya Namah","Salutations to the wonderful one"],["Om Kamalapatrakshaaya Namah","Salutations to the one with lotus-petal eyes"]],meaning:"Names 28 to 54 of the 108 holy names of Lord Vishnu, glorifying His various divine qualities and attributes."}
         ]}
       ]},
       {id:'group2',name:'Group II',desc:'Bhagavad Gita slokas, Bhaja Govindam, and prayers (Ages 9-12).',
       years:[
         {name:'Year I',desc:'Bhagavad Gita - God & Avatar, Bhakti & Karma',slokas:[
-          {title:"Aham Aatma",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Ahamaatma.mp3",shloka:"Aham Atmaa Gudaakesha\nSarva Bhootasthito Aham",lines:[[["Aham","I (God)"],["Atmaa","The Self, the Soul"],["Gudaakesha","O Arjuna"]],[["Sarva","All"],["Bhootasthito","Dwelling in beings"],["Aham","I (God)"]]],meaning:"I am the Self seated in the hearts of all beings. I am the beginning, the middle and the end of all beings."},
-          {title:"Yadaa Yadaa",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/yadayada.mp3",shloka:"Yadaa Yadaa Hi Dharmasya\nGlaanir Bhavati Bhaarata\nAbhyutthaanam Adharmasya\nTadaatmaanam Srujaamy Aham",lines:[[["Yadaa Yadaa","Whenever"],["Hi","Indeed"],["Dharmasya","Of righteousness"]],[["Glaanir","Decline"],["Bhavati","Occurs"],["Bhaarata","O Arjuna"]],[["Abhyutthaanam","Uprising"],["Adharmasya","Of unrighteousness"]],[["Tadaatmaanam","My own Self"],["Srujaamy","I manifest"],["Aham","I"]]],meaning:"Whenever there is a decline in righteousness and a rise in unrighteousness, O Arjuna, then I manifest Myself."},
-          {title:"Pashya Me Paartha",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Pashyame-partha.mp3",shloka:"Pashya Me Paartha Roopaani\nShata Shaha Janaananeha\nBahu Paani Bahu Paadaa\nBahu Naaham Bahudah Bhaanavah",lines:[[["Pashya","See"],["Me","In Me"],["Paartha","O Arjuna"]],[["Roopaani","My Forms"],["Shata Shaha","Hundreds of thousands"],["Janaananeha","Born in this world"]],[["Bahu","Many"],["Paani","Arms"],["Bahu","Many"],["Paadaa","Legs"]],[["Bahu","Many"],["Naaham","Mouths"],["Bahu","Many"],["Bhaanavah","Eyes"]]],meaning:"Behold My manifold forms, O Arjuna, hundreds of thousands, diverse, divine, of various shapes and sizes."},
-          {title:"Aham Vaishvaanaro",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Aham_vaishvanaro.mp3",shloka:"Aham Vaishvaanaro Bhootvaa\nPraaninaam Deham Aashritah\nPraanaapaan Samaaye Yuktah\nPachamy Annam Chatur Vidham",lines:[[["Aham","I"],["Vaishvaanaro","The Cosmic Fire"],["Bhootvaa","Having become"]],[["Praaninaam","Of all beings"],["Deham","In bodies"],["Aashritah","Dwelling"]],[["Praana","Outgoing breath"],["Apaan","Incoming breath"],["Samaaye","Balanced"],["Yuktah","United"]],[["Pachamy","I digest"],["Annam","Food"],["Chatur Vidham","Of four kinds"]]],meaning:"I am the cosmic fire Vaishvanara. Establishing Myself in the body of all beings, I digest all kinds of food."},
-          {title:"Parithranaya Sadhunaam",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Parithraanaya.mp3",shloka:"Paritraanaaya Saadhunaam\nVinaashaaya Cha Dushkritaam\nDharma Sansthaapana Arthaaya\nSambhavaami Yuge Yuge",lines:[[["Paritraanaaya","To protect"],["Saadhunaam","Of the good and virtuous"]],[["Vinaashaaya","To destroy"],["Cha","And"],["Dushkritaam","The wicked"]],[["Dharma","Righteousness"],["Sansthaapana Arthaaya","To re-establish"]],[["Sambhavaami","I reincarnate"],["Yuge Yuge","From age to age"]]],meaning:"For the protection of the good and for the destruction of evil forces and to re-establish Righteousness I incarnate from age to age."},
-          {title:"Santushtah Satatam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Santushtah.mp3",shloka:"Santushtah Satatam Yogi\nYataatmaa Dridha Nishchayah\nMayiarpito Mano Buddhir\nYo Madbhaktah Sa Me Priyah",lines:[[["Santushtah","Contented"],["Satatam","Always"],["Yogi","One engaged in devotion"]],[["Yataatmaa","Self restrained"],["Dridha Nishchayah","Firm conviction"]],[["Mayi","Upon Me"],["Arpita","Dedicated"],["Mano Buddhir","Mind and intellect"]],[["Yo","Whoever"],["Madbhaktah","My devotee"],["Sa Me Priyah","Is dear to Me"]]],meaning:"One who is ever contented, self-restrained, with firm conviction, who has dedicated mind and intellect to Me, such a devotee is dear to Me."},
-          {title:"Sarva Dharman",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Sarvadharman-1.mp3",shloka:"Sarva Dharman Parityajya\nMamekam Sharanam Vraja\nAham Tvaam Sarva Papebhyo\nMokshayishyaami Maa Shuchah",lines:[[["Sarva Dharman","All forms of duty"],["Parityajya","Having abandoned"],["Mamekam","Me alone"],["Sharanam Vraja","Take refuge"]],[["Aham","I"],["Tvaam","You"],["Sarva Papebhyo","From all sins"],["Mokshayishyaami","I shall liberate"]],[["Maa Shuchah","Do not grieve"]]],meaning:"Abandon all forms of duty and take refuge in Me alone. I shall liberate you from all sins. Do not grieve."},
-          {title:"Man Mana Bhava",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Manmana.mp3",shloka:"Manmana Bhava Mad Bhakto\nMad Yaaji Maam Namaskuru\nMaam Evaaisyasi Yuktvaivam\nAatmaanam Mat Parayanah",lines:[[["Man Mana","Fix your mind on Me"],["Bhava","Be"],["Mad Bhakto","My devotee"]],[["Mad Yaaji","My worshipper"],["Maam Namaskuru","Bow to Me"]],[["Maam Evaaisyasi","You will come to Me"],["Yuktvaivam","Uniting thus"]],[["Aatmaanam","Yourself"],["Mat Parayanah","Devoted to Me"]]],meaning:"Fix your mind on Me, be devoted to Me, worship Me, bow to Me. Thus uniting yourself with Me, you shall attain Me."},
-          {title:"Patram Pushpam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Patram-pushpam.mp3",shloka:"Patram Pushpam Phalam Toyam\nYo Me Bhaktyaa Prayacchati\nTad Aham Bhakty Upahritam\nAshnaami Prayataatmanah",lines:[[["Patram","A leaf"],["Pushpam","A flower"],["Phalam","A fruit"],["Toyam","Water"]],[["Yo","Whoever"],["Me","To Me"],["Bhaktyaa","With devotion"],["Prayacchati","Offers"]],[["Tad","That"],["Aham","I"],["Bhakty","With devotion"],["Upahritam","Offered"]],[["Ashnaami","I accept"],["Prayataatmanah","From a pure-hearted person"]]],meaning:"Whoever offers Me with devotion a leaf, a flower, a fruit or water, I accept that offering of love from the pure-hearted."},
-          {title:"Brahma Arpanam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Brahmarpanam.mp3",shloka:"Brahmaarpanam Brahma Havir\nBrahmaagnau Brahmanaa Hutam\nBrahmaiva Tena Gantavyam\nBrahma Karma Samaadhinah",lines:[[["Brahma","The Supreme Being"],["Arpanam","Offering"],["Havir","The offering food"]],[["Brahmaagnau","In the fire which is God"],["Brahmanaa","By God"],["Hutam","Offered"]],[["Brahmaiva","God alone"],["Tena","By that"],["Gantavyam","To be attained"]],[["Brahma","God"],["Karma","Action"],["Samaadhinah","Through absorption"]]],meaning:"The act of offering is God, the offering itself is God, offered by God in the sacred fire which is God. Through such actions one attains God."},
-          {title:"Yat Karoshi",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Yatkaroshi.mp3",shloka:"Yat Karoshi Yad Ashnaasi\nYaj Juhoshi Dadaasi Yat\nYat Tapasyasi Kaunteya\nTat Kurushva Mad Arpanam",lines:[[["Yat Karoshi","Whatever you do"],["Yad Ashnaasi","Whatever you eat"]],[["Yaj Juhoshi","Whatever you offer in fire"],["Dadaasi Yat","Whatever you give"]],[["Yat Tapasyasi","Whatever austerity you perform"],["Kaunteya","O Son of Kunti"]],[["Tat","All that"],["Kurushva","Do"],["Mad Arpanam","As an offering to Me"]]],meaning:"Whatever you do, whatever you eat, whatever you offer, whatever you give, whatever austerity you perform -- do it all as an offering to Me."},
-          {title:"Purushah Sa Parah",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Purushah-1.mp3",shloka:"Purushah Sa Parah Paartha\nBhaktyaa Labhyas Tva Ananyayaa\nYasya Antahsthaani Bhootaani\nYena Sarvam Idam Tatam",lines:[[["Purushah","Supreme Person"],["Sa","He"],["Parah","Supreme"],["Paartha","O Arjuna"]],[["Bhaktyaa","By devotion"],["Labhyas","Is attainable"],["Tva","But"],["Ananyayaa","Undivided"]],[["Yasya","Whom"],["Antahsthaani","Within"],["Bhootaani","All beings"]],[["Yena","By whom"],["Sarvam","All"],["Idam","This"],["Tatam","Is pervaded"]]],meaning:"O Paartha! The Supreme Person is attainable by single pointed devotion. Within Him, all beings dwell and by Him, all is pervaded."}
+          {title:"Aham Aatma",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Ahamaatma.mp3",shloka:"Aham Atmaa Gudaakesha\nSarva Bhootasthito Aham",lines:[["AHAM","I"],["AATMA","the soul, the self"],["GUDAAKESHA","O Arjuna, (gudaaka – sleep, esha – Lord, i.e. one who has conquered sleep)"],["SARVA","all"],["BHOOTAASHAYA","Heart of the beings"],["STHITAH","dwelling in"],["AADI","the beginning"],["CHA","and"],["MADHYAM","the middle"],["BHOOTANAM","of all living beings"],["EVA","only"],["ANTA","end"]],meaning:"I am the Soul (the self), O Arjuna, seated in the heart of all living beings. I am the beginning, the middle and also the end of all beings."},
+          {title:"Yadaa Yadaa",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/yadayada.mp3",shloka:"Yadaa Yadaa Hi Dharmasya\nGlaanir Bhavati Bhaarata\nAbhyutthaanam Adharmasya\nTadaatmaanam Srujaamy Aham",lines:[["YADAA YADAA","whenever"],["HI","surely"],["DHARMASYA","of righteousness"],["GLAANIR","decline"],["BHAVATI","happens"],["BHAARATA","O Arjuna, descendant of Bharata"],["ABHYUTTHAANAM","rise"],["ADHARMASYA","of unrighteousness"],["TADAA","then"],["AATMAANAM","myself"],["SRIJAMI","Create(manifest)"],["AHAM","I"]],meaning:"Whenever there is a decline in the practice of dharma (righteousness) and rise of adharma (unrighteousness), O descendant of Bharata, then I incarnate (manifest) Myself."},
+          {title:"Pashya Me Paartha",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Pashyame-partha.mp3",shloka:"Pashya Me Paartha Roopaani\nShata Shaha Janaananeha\nBahu Paani Bahu Paadaa\nBahu Naaham Bahudah Bhaanavah",lines:[["PASHYA","Behold (see)"],["ME","My"],["PAARTHA","O Arjuna (Son of Prithaa)"],["ROOPANI","forms"],["SHATASHAH","hundreds"],["ATHA","likewise"],["SAHASRASHAH","thousands"],["NAANAA","Varied, many"],["VIDHAANI","kinds"],["DIVYAANI","divine"],["VARNA","colours"],["AKRUTINI","forms"]],meaning:"O Arjuna (son of Prithaa)! See My heavenly forms by hundreds and thousands, of different kinds, and of various colours and shapes."},
+          {title:"Aham Vaishvaanaro",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Aham_vaishvanaro.mp3",shloka:"Aham Vaishvaanaro Bhootvaa\nPraaninaam Deham Aashritah\nPraanaapaan Samaaye Yuktah\nPachamy Annam Chatur Vidham",lines:[["AHAM","I"],["VAISHVAANARA","The (Fire) Vaishvaanara"],["BHOOTVA","Having become"],["PRAANINAAM","Of living beings"],["DEHAM","The body"],["AASHRITAH","Abiding"],["PRAANAAPAANASAMAAYUKTAH","Associated with Praana and Apaana"],["PACHAAMI","(I) digest"],["ANNAM","Food"],["CHATURVIDHAM","Four fold"]],meaning:"Abiding in the body of living beings as the digestive fire called Vaishvaanara, I digest the four varieties of food associated with the vital forces of Prana and Apaana (the inward and the outward breath). The four types of food are: (1) that which we mash with our teeth and eat, (2) that which is chewed, (3) that which is eaten with the help of the tongue – thick juicy things like mango juice etc, and (4) liquids."},
+          {title:"Parithranaya Sadhunaam",category:"Gita - God & Avatar",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Parithraanaya.mp3",shloka:"Paritraanaaya Saadhunaam\nVinaashaaya Cha Dushkritaam\nDharma Sansthaapana Arthaaya\nSambhavaami Yuge Yuge",lines:[["PARITRAANAAYA","to protect"],["SAADHUNAAM","of the good and virtuous"],["VINAASHAAYA","to destroy"],["CHA","and"],["DUSHKRITAAM","the wicked"],["DHARMA","righteousness"],["SANSTHAAPANA ARTHAAYA","to re-establish"],["SAMBHAAMI","I reincarnate (take birth)"],["YUGE YUGE","from age to age"]],meaning:"For the protection of the good and for the destruction of evil forces and to re-establish Righteousness I incarnate from age to age."},
+          {title:"Santushtah Satatam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Santushtah.mp3",shloka:"Santushtah Satatam Yogi\nYataatmaa Dridha Nishchayah\nMayiarpito Mano Buddhir\nYo Madbhaktah Sa Me Priyah",lines:[["SANTUSHTAH","contented"],["SATATAM","always"],["YOGI","one engaged in devotion"],["YATA AATMA","self restrained"],["DRIDHA NISHCHAYAH","Firm conviction"],["MAYI","upon me"],["ARPITA","dedicated"],["MANAH","mind"],["BUDDHI","intellect"],["YO","whoever"],["MAD BHAKTAH","my devotee"],["SA","he"],["MEY","to me"],["PRIYAH","dear"]],meaning:"One who is ever contented, ever equal minded, and self-restrained, and who has firm conviction in the Aatma, and one who has dedicated the mind and intellect to Me, such a devotee is dear to Me."},
+          {title:"Sarva Dharman",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Sarvadharman-1.mp3",shloka:"Sarva Dharman Parityajya\nMamekam Sharanam Vraja\nAham Tvaam Sarva Papebhyo\nMokshayishyaami Maa Shuchah",lines:[["SARVA","all"],["DHARMAAN","duties"],["PARITYAJYA","abandoning"],["MAAM","unto Me"],["EKAM","only"],["SHARANAM","refuge"],["VRAJA","seek"],["AHAM","I"],["TVAAM","you"],["SARVA","all"],["PAAPEBHYAH","from sin"],["MOKSHAYISHYAAMI","will liberate"],["MAA","do not"],["SHUCHAH","fear, worry"]],meaning:"Abandoning all sense of righteousness and unrighteousness, seek Me alone as your sole Refuge. I will liberate you from all sins. Do not fear."},
+          {title:"Man Mana Bhava",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Manmana.mp3",shloka:"Manmana Bhava Mad Bhakto\nMad Yaaji Maam Namaskuru\nMaam Evaaisyasi Yuktvaivam\nAatmaanam Mat Parayanah",lines:[["MAN-MANNA","always thinking of Me"],["BHAVA","become"],["MAT","My"],["BHAKTAH","devotee"],["YAAJEE","worshipper"],["MAAM","unto Me"],["NAMASKURU","offer homage"],["EVA","only"],["ESHYASI","you will come"],["YUKTVAA","being absorbed"],["EVAM","thus"],["AATMAANAM","your soul"],["MAT-PARAAYANAH","devoted to Me"]],meaning:"Fix your thoughts on Me. Be devoted to Me. Worship Me. Do homage to Me. Being completely absorbed in Me, you shall certainly reach Me."},
+          {title:"Patram Pushpam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Patram-pushpam.mp3",shloka:"Patram Pushpam Phalam Toyam\nYo Me Bhaktyaa Prayacchati\nTad Aham Bhakty Upahritam\nAshnaami Prayataatmanah",lines:[["PATRAM","a leaf"],["PUSHPAM","a flower"],["PHALAM","a fruit"],["TOYAM","water"],["YAH","whosoever"],["MEY","to Me"],["BHAKTYA","with devotion"],["PRAYACCHATI","offers"],["TAT","that (leaf, flower, fruit and water)"],["AHAM","I"],["BHAKTI-UPAHRITAM","offered with devotion"],["ASHNAAMI","accept"],["PRAYATA AATMANAH","offered with a pure heart"]],meaning:"Whosoever offers Me a leaf, a flower, a fruit or water with full devotion and love, I accept that, because it is offered with a pure heart."},
+          {title:"Brahma Arpanam",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Brahmarpanam.mp3",shloka:"Brahmaarpanam Brahma Havir\nBrahmaagnau Brahmanaa Hutam\nBrahmaiva Tena Gantavyam\nBrahma Karma Samaadhinah",lines:[["BRAHMA","Brahman"],["ARPANAM","The oblation"],["BRAHMA","Brahman"],["HAVI (HI)","The clarified butter (the offerings)"],["BRAHMAAGNAU","In the fire of Brahman"],["BRAHMANAA","By Brahman"],["HUTAM","Is offered"],["BRAHMA","Brahman"],["YEVA","Only"],["TENA","By him"],["GANTAVYAM","Shall be reached"],["BRAHMAKARMA SAMAADHINA","By the man who is absorbed in action which is Brahman"]],meaning:"Everything in a yagna is Brahman (Divine). The act of offering oblation is Brahman, the person offering the oblation is Brahman. The fire into which oblation is offered is Brahman. This is true in the case of one who knows that all karma is Brahman."},
+          {title:"Yat Karoshi",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Yatkaroshi.mp3",shloka:"Yat Karoshi Yad Ashnaasi\nYaj Juhoshi Dadaasi Yat\nYat Tapasyasi Kaunteya\nTat Kurushva Mad Arpanam",lines:[["YAT","whatever"],["KAROSHI","you do"],["YAD","whatever"],["ASHNAASI","you eat"],["YAT","whatever"],["JUHOSHI","you offer"],["DADAASI","you give away (gift)"],["TAPASYASI","austerities you practice"],["KAUNTEYA","O Arjuna, son of Kunti"],["TAT","that"],["KURUSHVA","do"],["MAD","to me"],["ARPANAM","as an offering"]],meaning:"Whatever you do, whatever you eat, whatever you offer, whatever you give as charity and whatever austerities you perform, do that, O son of Kunti, as an offering to Me."},
+          {title:"Purushah Sa Parah",category:"Gita - Bhakti & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Purushah-1.mp3",shloka:"Purushah Sa Parah Paartha\nBhaktyaa Labhyas Tva Ananyayaa\nYasya Antahsthaani Bhootaani\nYena Sarvam Idam Tatam",lines:[["PURUSHAH","Supreme Person"],["SA","He"],["PARAH","Supreme"],["PAARTHA","Arjuna, son of Prithaa"],["BHAKTYAA","by devotion"],["LABHYAH","is attainable"],["TVA","but"],["ANANYAYAA","undivided"],["YASYA","whom"],["ANTAHSTHAANI","within"],["BHOOTAANI","all beings (creation)"],["YENA","by whom"],["SARVAM","All"],["IDAM","This"],["TATAM","is pervaded"]],meaning:"O Paartha! The Supreme Person is attainable by single pointed devotion. Within Him, all beings dwell and by Him, all is pervaded."}
         ]},
         {name:'Year II',desc:'Bhaja Govindam',slokas:[
           {title:"Adi Shankara",category:"Bhaja Govindam",audio:"",shloka:"Introduction to Bhaja Govindam",lines:[["Adi Shankara","The great philosopher and saint"]],meaning:"Introduction to Adi Shankaracharya and the Bhaja Govindam composition."},
-          {title:"Bhaja Govindam",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Bhaja-Govindham.mp3",shloka:"Bhaja Govindam Bhaja Govindam\nGovindam Bhaja Mudhamate\nSamprapte Sannihite Kaale\nNahi Nahi Rakshati Dukrinkarane",lines:[["Bhaja Govindam Bhaja Govindam","Worship Govinda, worship Govinda"],["Govindam Bhaja Mudhamate","Worship Govinda, O foolish mind"],["Samprapte Sannihite Kaale","When death approaches"],["Nahi Nahi Rakshati Dukrinkarane","Grammar rules will not save you"]],meaning:"Seek Govinda! Sing the glory of Govinda! O foolish mind! At the time of death, recitals of grammar will not rescue you."},
-          {title:"Balastavat Kreeda",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Balastavat_Kreeda.mp3",shloka:"Balastavat Kreedaasaktah\nTarunastavat Taruneeesaktah\nVriddhaastavat Chintaa grashtah\nKaale Kritam Bhavati Bhajagovindam",lines:[["Balastavat Kreedaasaktah","In childhood attached to play"],["Tarunastavat Taruneeesaktah","In youth attached to young women"],["Vriddhaastavat Chintaa grashtah","In old age consumed by worry"],["Kaale Kritam Bhavati Bhajagovindam","Do your duty in time, worship Govinda"]],meaning:"In childhood you are attached to play, in youth to a young woman, in old age you are consumed by worry. Do your duty in time, worship Govinda."},
-          {title:"Satsangatwe Nissangattwam",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Satsangatwe_Nissangattwam.mp3",shloka:"Satsangatwe Nissangattwam\nNissangatwe Nirmohatwam\nNirmohatwe Nischalatattwam\nNischalatattwe Jeevanmuktih",lines:[["Satsangatwe Nissangattwam","From good company comes non-attachment"],["Nissangatwe Nirmohatwam","From non-attachment comes freedom from delusion"],["Nirmohatwe Nischalatattwam","From freedom from delusion comes steadiness"],["Nischalatattwe Jeevanmuktih","From steadiness comes liberation in life"]],meaning:"From good company comes non-attachment, from non-attachment comes freedom from delusion, from freedom from delusion comes steadiness, from steadiness comes liberation in life."},
-          {title:"Twayi Mayi",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Twayi_Mayi.mp3",shloka:"Twayi Mayi Vaa Mayi Twayi Vaa\nRaamo Raameti Ravaye Nityam\nTadvaachaakah Kila Naamakarmee",lines:[["Twayi Mayi Vaa Mayi Twayi Vaa","In You or in Me"],["Raamo Raameti Ravaye Nityam","I always chant Rama Rama"],["Tadvaachaakah Kila Naamakarmee","One who speaks the name is not just doing an action"]],meaning:"Whether it is You or me, Rama or Rama is always chanted. One who speaks the name is not just doing a mere action."},
-          {title:"Pranayaamam Pratyaharam",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Pranayamam_Pratyaharam.mp3",shloka:"Pranayaamam Pratyahaaram\nIndriyaayaam Nigraham\nEtad Yogam Param Praahu\nKaayaklesha Tapovanam",lines:[["Pranayaamam Pratyahaaram","Control of breath and withdrawal"],["Indriyaayaam Nigraham","Restraint of the senses"],["Etad Yogam Param Praahu","This is called the supreme Yoga"],["Kaayaklesha Tapovanam","It burns away physical suffering"]],meaning:"Control of breath, withdrawal of senses, restraint of organs - this they say is Yoga, the austerity that burns away physical suffering."},
-          {title:"Kate Kanta Kaste Putrah",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Kate_Kanta.mp3",shloka:"Kate Kanta Kaste Putrah\nLokasyaasya Kimeva Param\nEkatvaat Nopapadyate\nKaamukah Kaamukaah",lines:[["Kate Kanta Kaste Putrah","Whose wife, whose son?"],["Lokasyaasya Kimeva Param","What in this world is truly yours"],["Ekatvaat Nopapadyete Kaamukah","Since only One exists, nothing can be claimed"]],meaning:"Who is your wife? Who is your son? Of this world, what is yours? When only One exists, none can be claimed."},
-          {title:"Dinayaaminyow Sayam Pratah",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Dinayaaminyow.mp3",shloka:"Dinayaaminyow Sayam Pratah\nShyaamam Pratah Punaravaahinyam\nKaalakatey Kaamaksham\nKlesavighnaan Tameva Yahi",lines:[["Dinayaaminyow Sayam Pratah","Day and night, evening and morning"],["Shyaamam Pratah Punaravaahinyam","Darkness and morning again"],["Kaalakatey Kaamaksham","In the course of time, O desire-eyed one"],["Klesavighnaan Tameva Yahi","Seek the Lord who removes all troubles"]],meaning:"Day and night, morning and evening, darkness and morning, the river of time flows on. O mind, seek the Lord who removes all obstacles."},
-          {title:"Yogarato Vaa Bhogarato Vaa",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Yogaratovaa.mp3",shloka:"Yogarato Vaa Bhogarato Vaa\nSangarato Vaa Sangavinmutah\nVidyaavinmutah Kaamukah\nKasya Sukham Janakarmanah",lines:[["Yogarato Vaa Bhogarato Vaa","Whether engaged in yoga or enjoyment"],["Sangarato Vaa Sangavinmutah","Whether in society or withdrawn"],["Vidyaavinmutah Kaamukah","Whether learned or lustful"],["Kasya Sukham Janakarmanah","Whose life gives happiness"]],meaning:"Whether engaged in yoga or in enjoyment, whether in association or alone, whether learned or lustful, whose work gives happiness?"}
+          {title:"Bhaja Govindam",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Bhaja-Govindham.mp3",shloka:"Bhaja Govindam Bhaja Govindam\nGovindam Bhaja Mudhamate\nSamprapte Sannihite Kaale\nNahi Nahi Rakshati Dukrinkarane",lines:[["Bhaja","Worship"],["Govindam","Govinda"],["Mudhamate","O, foolish mind"],["Samprapte","(when you have) reached / obtained"],["Sannihite","(in the) presence / nearness of"],["Kaale","Time (here: Lord of Death, Yama)"],["Nahi","No; never"],["Rakshati","Protects"],["Dukrinkarane","the grammatical formula"]],meaning:"Seek Govinda! Sing the glory of Govinda! Oh ignoramus! At the time of death, recitals of the rules of the grammar will not be able to rescue you at all."},
+          {title:"Balastavat Kreeda",category:"Bhaja Govindam",audio:"",shloka:"Balastavat Kreedaasaktah\nTarunastavat Taruneeesaktah\nVriddhaastavat Chintaa grashtah\nKaale Kritam Bhavati Bhajagovindam",lines:[["Bala (ha)","Young boy"],["Tavat","Till then"],["Kreeda(ha)","Play"],["Sakta(ha)","Attached / engrossed / absorbed"],["Taruna","Young man"],["Tarunee(hee)","Young woman"],["Vridha(ha)","Old man"],["Chinta","Worry"],["Parame","In the lofty; high; supreme"],["Brahmani","Brahman; God"],["Kopi","Whosoever"],["Na","Not"]],meaning:"Childhood skips off in sport and play. Youth flies off in pursuits of love making. As one grows older, he is drowned in worry about the security and future of his wife and children. One's whole life gets spent in some kind of worry or other and at no stage does man find time to lift his thoughts to God."},
+          {title:"Satsangatwe Nissangattwam",category:"Bhaja Govindam",audio:"",shloka:"Satsangatwe Nissangattwam\nNissangatwe Nirmohatwam\nNirmohatwe Nischalatattwam\nNischalatattwe Jeevanmuktih",lines:[["Satsangatwe","in good company"],["Nissangattwam","aloneness / non-attachment / detachment"],["Nirmohatwam","non-infatuated state / clearheadedness"],["Nishchalatattwam","tranquillity / imperturbability"],["Jeevanmukthih","salvation + freedom from bondage of birth"]],meaning:"The company of the good weans one away from false attachments; when attachment is lost, delusion ends; when delusion ends, the mind becomes unwavering and steady. An unwavering and steady mind is merited for Jeevan Mukthi (freedom of spirit and liberation even in this life)."},
+          {title:"Twayi Mayi",category:"Bhaja Govindam",audio:"",shloka:"Twayi Mayi Vaa Mayi Twayi Vaa\nRaamo Raameti Ravaye Nityam\nTadvaachaakah Kila Naamakarmee",lines:[["Twayi","in yourself"],["Mayi","in myself"],["Chaanya traiko","cha+anyatra+ekaH, and+in any other place+only one"],["Vishnuh","the Lord Mahavishnu"],["Vyartham","in vain ; for nothing; purposeless"],["Kupyasi","you get angry"],["Mayyasahishnuh","mayi+asahishnuh, in me+intolerant"],["Bhava","become"],["Samachittah","equal-minded / equanimity"],["Sarvatra","everywhere"],["Twam","You"],["Vanchhasi","you desire"],["Achirad","without delay / in no time"],["Yadi","if"],["Vishnutwam","the quality / state of Brahman / god-realisation"]],meaning:"In you, in me and everywhere, there is but the one Vishnu. Mistakenly viewing me with a sense of difference, you are all ill disposed towards me. Try to see in all beings only Vishnu, who is your own self. Give up your false and egoistic sense of separateness from other beings. Cultivate a sense of kinship, unity and oneness with all."},
+          {title:"Pranayaamam Pratyaharam",category:"Bhaja Govindam",audio:"",shloka:"Pranayaamam Pratyahaaram\nIndriyaayaam Nigraham\nEtad Yogam Param Praahu\nKaayaklesha Tapovanam",lines:[["Pranayamam","breath-control"],["Pratyaharam","withdrawal of senses to control the mind"],["Nitya","always / daily / certain"],["Anitya","uncertain / temporary / ephemeral / transient"],["Viveka","awareness after reasoning"],["Vicharam","thought / considered conclusion / opinion"],["Jaapyasameta","with chanting of the names of the lord"],["Samadhividhanam","in the state of trance"],["Kurvavadhanam","pay attention"],["Mahadavadhanam","great care attention"]],meaning:"Mastery over breath (control of the vital airs) and restraining of the senses, discrimination between the enduring and the fleeting, the Eternal and the transient, Japa and Meditation and submerging of the bodily and mental consciousness in the Consciousness of the Spirit, merging oneself into the total Inner Silence – these are the disciplines which one should practise with unrelenting fervour (for attaining Govinda)."},
+          {title:"Kate Kanta Kaste Putrah",category:"Bhaja Govindam",audio:"",shloka:"Kate Kanta Kaste Putrah\nLokasyaasya Kimeva Param\nEkatvaat Nopapadyate\nKaamukah Kaamukaah",lines:[["Kate","kA+te = who+your"],["Kanta","Wife"],["Kaste","kaH+te, who+your"],["Putrah","Son"],["Samsaar (aha)","world / family"],["Ayam","This"],["Atheeva","great / big / very much"],["Vichitraha","wonderful / mysterious"],["Kasya","Whose"],["Twam","You"],["Kaha","Who"],["Kutha (ha)","from where"],["Aayatha ha","have come"],["Tattwam","truth / nature"],["Tadiha","tat+iha, that+here"],["Bhratah","Brother"]],meaning:"Who indeed is your beloved and who indeed is your son? Strange indeed are these family bonds! Who belongs to you and to whom do you belong? When did you come, Oh brother! Reflect on the truth of it all."},
+          {title:"Dinayaaminyow Sayam Pratah",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Dinayaaminyow.mp3",shloka:"Dinayaaminyow Sayam Pratah\nShyaamam Pratah Punaravaahinyam\nKaalakatey Kaamaksham\nKlesavighnaan Tameva Yahi",lines:[["Dinayanminyow","day + night"],["Sayam","Evening"],["Prata (ha)","Morning"],["Shishira","frosty season"],["Vasantow","Spring season"],["Puna (ha)","Again"],["Ayata (ha)","have arrived"],["Kala (ha)","Master Time"],["Kreedati","Plays"],["Gachchati","goes (away)"],["Ayu (hu)","life / age"],["Tadapi","tat+api, then even"],["Na","Not"],["Munchathi","Releases"],["Asa","Desire"],["Vayu (hu)","air (the wind of desire does not let off its hold)"]],meaning:"Day and night, dawn and dusk, winter and spring, all these are flitting across the stage of the world. While time is thus frolicking and befooling us, our life span is also running out. Yet we do not, even a little, give up clinging to our desires, nor do we let the desires loosen their grip on us!"},
+          {title:"Yogarato Vaa Bhogarato Vaa",category:"Bhaja Govindam",audio:"",shloka:"Yogarato Vaa Bhogarato Vaa\nSangarato Vaa Sangavinmutah\nVidyaavinmutah Kaamukah\nKasya Sukham Janakarmanah",lines:[["Yogarato","indulging in yoga"],["Vaa","Or"],["Bhogarato","indulging in worldly pleasures"],["Sangarato","indulging in good company"],["Sangaviheenah","bereft of company"],["Whose","Yasya"],["Brahmani","Brahman (God)"],["Ramate","Delights"],["Chittam","mind (here soul)"],["Nandati","Revels"],["Nandatyeva","revels alone / revels indeed"]],meaning:"Whether one is a yogi given to austere living or a bhogi given to luxuries, whether one has renounced everything and has taken to Sanyasa, or is still in family attachments, he alone will be truly happy and will verily enjoy who is even reveling inwardly in Brahman."}
         ]},
         {name:'Year II',desc:'Bhaja Govindam (continued)',slokas:[
-          {title:"Bhagavadgeeta Kinchidadheeta",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Bhagavadgeeta.mp3",shloka:"Bhagavadgeeta Kinchidadheeta\nGangaa Jalalava Kanivaata Paathah\nYasya Dehe Pranivo Maadhaavah\nTasya Nityam Sukham Param Bhavati",lines:[["Bhagavadgeeta Kinchidadheeta","One who studies a little of the Gita"],["Gangaa Jalalava Kanivaata Paathah","And drinks Ganges water or breathes Braja air"],["Yasya Dehe Pranivo Maadhaavah","In whose body the Lord dwells"],["Tasya Nityam Sukham Param Bhavati","For that one there is eternal supreme happiness"]],meaning:"If one reads even a little of the Bhagavad Gita, drinks a drop of Ganges water, breathes the air of Braja, where the Lord dwells, eternal supreme happiness is his."},
-          {title:"Nalineedalagatha",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Nalineedalagatha.mp3",shloka:"Nalineedalagatha Jalamatitharalam\nTadvad Jeevitam Atishay Chapalam\nVidhi Vyaathaa Kena Deepa Navaneetachuram",lines:[["Nalineedalagatha Jalamatitharalam","Water droplet on lotus petal is unstable"],["Tadvad Jeevitam Atishay Chapalam","Similarly, life is highly unstable"],["Vidhi Vyaathaa Kena Deepa Navaneetachuram","Why worry about it as butter churned from milk"]],meaning:"The water droplet on the lotus petal is highly unstable. So also is life. Why worry about it as if it is butter churned from milk?"},
-          {title:"Shatrou Mitre Putre Bandhou",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Shatrou.mp3",shloka:"Shatrou Mitre Putre Bandhou\nChinta Maa Vaa Chintayaasya Kaasya\nSwarahitam Vaa Na Kaasya Swami\nChintaam",lines:[["Shatrou Mitre Putre Bandhou","Enemy, friend, son or relative"],["Chinta Maa Vaa Chintayaasya Kaasya","Do not worry about who is whose"],["Swarahitam Vaa Na Kaasya Swami","Who is friend or master"],["Chintaam","Do not worry"]],meaning:"Whether it is a foe or friend, son or relative, do not worry. Who is yours and who is not? The Lord alone is the master."},
-          {title:"Arthamanartham",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Arthamanartham.mp3",shloka:"Arthamanartham Bhavaya Nityam\nKaashtaa Taa Pasu Dehinam\nKaamavagamam Nartanaa\nChidyaamaano Harati Maasaakaih",lines:[["Arthamanartham Bhavaya Nityam","Always think wealth as worthless"],["Kaashtaa Taa Pasu Dehinam","The body is like a log of wood"],["Kaamavagamam Nartanaa","Desire leads to dancing"],["Chidyaamaano Harati Maasaakaih","Death destroys it in months"]],meaning:"Always think of wealth as worthless. The body is like a house. Desire leads to dancing, and death comes and destroys it all in months."},
-          {title:"Punarapi Jananam",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Punarapi_Jananam.mp3",shloka:"Punarapi Jananam Punarapi Maranam\nPunarapi Jananee Jathare Shayanam\nIha Samsaare Bahukaastvaare\nKhala Karmakritaam Kaamukah",lines:[["Punarapi Jananam Punarapi Maranam","Again birth, again death"],["Punarapi Jananee Jathare Shayanam","Again lying in the mother's womb"],["Iha Samsaare Bahukaastvare","In this ocean of samsara, many are drowned"],["Khala Karmakritaam Kaamukah","Cruel is the karma of the lustful"]],meaning:"Again birth, again death, again lying in the mother's womb. In this cycle of samsara, many suffer. Cruel is the karma of the lustful."},
-          {title:"Kamam Krodham",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Kamam_Krodham.mp3",shloka:"Kamam Krodham Lobham Moham\nTyaktva Sambhavimaanataam\nTaavat Nischaya Proktam\nJeevane Saaram Ucchyate",lines:[["Kamam Krodham Lobham Moham","Desire, anger, greed and delusion"],["Tyaktva Sambhavimaanataam","Cast them away along with pride"],["Taavat Nischaya Proktam","Only then is it decided"],["Jeevane Saaram Ucchyate","This is the essence of life"]],meaning:"Casting away desire, anger, greed, and delusion, becoming free from pride and arrogance - this is declared as the essence of life."},
-          {title:"Geyam Geeta",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Geyam_Geeta.mp3",shloka:"Geyam Geeta Naamavasanaapi\nGajaa Ekaashtottara Sataani Kaamukah\nKaamini Yajamanaaya Havyam\nVahnau Harati Kaashtaa",lines:[["Geyam Geeta Naamavasanaapi","The Gita is to be sung, the Lord's name is to be chanted"],["Gajaa Ekaashtottara Sataani Kaamukah","The lustful perform 108 rituals"],["Kaamini Yajamanaaya Havyam Vahnau Harati Kaashtaa","But fire carries away the offerings"]],meaning:"Bhagavad Gita is to be sung, studied and enjoyed. One lustful person does 108 rituals but fire carries away the offerings."},
-          {title:"Gurucharanambuja",category:"Bhaja Govindam",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Gurucharanambuja.mp3",shloka:"Gurucharanambuja Parivratam\nDaamana Moolam Shri Gurugangam Vaa\nBhaktam Shri Guru Chidambare Bhaje",lines:[["Gurucharanambuja Parivratam","Devoted to the lotus feet of the Guru"],["Daamana Moolam","Root cause of liberation"],["Shri Gurugangam Vaa Bhaktam","The devoted to the Guru who is like the Ganges"],["Shri Guru Chidambare Bhaje","I worship the Guru at Chidambaram"]],meaning:"One who is devoted to the lotus feet of the Guru, the destroyer of all delusion, the Guru who is the Ganges of grace, I worship the Guru."}
+          {title:"Bhagavadgeeta Kinchidadheeta",category:"Bhaja Govindam",audio:"",shloka:"Bhagavadgeeta Kinchidadheeta\nGangaa Jalalava Kanivaata Paathah\nYasya Dehe Pranivo Maadhaavah\nTasya Nityam Sukham Param Bhavati",lines:[["Bhagavad","God's"],["Geeta","song (here the scripture 'BhagavadGita')"],["Kinchida","a little"],["(a)dheeta","Studied"],["Gangaa","river Ganga"],["Jalalava","water drop"],["Kanika","a little droplet"],["Peeta","Drunk"],["Sakridapi","once even"],["Yena","by whom"],["Murari","the enemy of 'Mura' (Lord Krishna)"],["Samarcha","well worshipped"],["Kriyate","is done"],["Tasya","His"],["Yamena","by Yama, the lord of Death"],["Na","Not"],["Charcha","Discussion"]],meaning:"Recitation of even a very small portion of Bhagavad Gita, sipping of even a drop of the waters of Gangers, performing the worship of Hari even for a while - these will surely save one from confronting with death."},
+          {title:"Nalineedalagatha",category:"Bhaja Govindam",audio:"",shloka:"Nalineedalagatha Jalamatitharalam\nTadvad Jeevitam Atishay Chapalam\nVidhi Vyaathaa Kena Deepa Navaneetachuram",lines:[["Nalinee dala gata","lotus+petal+reached/gone"],["Jalam","water(drop)"],["Ati taralam","very+unstable"],["Tadwat","like that"],["Jeevitam","Life"],["Atishaya","Wonderful"],["Chapalam","fickle-minded"],["Viddhi","know for sure"],["Vyaadhi","Disease"],["Abhimana","self-importance"],["Grastam","having been caught/seized"],["Lokam","world; people"],["Shoka hatam","attacked(hata) by grief(shoka)"],["Cha","And"],["Samastam","Entire"]],meaning:"The water droplet on the lotus leaf is tremulous and unsteady. So too is life which is as uncertain. Know the body in the claws of disease which may swallow it at any moment. Life is ultimately nothing but worry, misery and grief. They are the screen on which the world shows itself."},
+          {title:"Shatrou Mitre Putre Bandhou",category:"Bhaja Govindam",audio:"",shloka:"Shatrou Mitre Putre Bandhou\nChinta Maa Vaa Chintayaasya Kaasya\nSwarahitam Vaa Na Kaasya Swami\nChintaam",lines:[["Shatrou","in (towards)the enemy"],["Mitre","in (towards) the friend"],["Putre","in (towards) the son"],["Bandhou","in (towards) relatives"],["Maa","don't"],["Kuru","Do"],["Yatnam","Effort"],["Vigrahassandhou","for war(dissension) or peace-making"],["Sarvasminnapi","in all beings"],["Pashyatmanam","see your own self"],["Sarvatra","everywhere"],["Utsrija","give up"],["Bhed Ajnanam","difference/duality"]],meaning:"Do not look at anybody in terms of friend or foe, brother or cousin; do not fritter away your mental energies in thoughts of friendship or enmity. Seeking the Self (Atma) everywhere, be amiable and equal-minded towards all, treating everyone alike."},
+          {title:"Arthamanartham",category:"Bhaja Govindam",audio:"",shloka:"Arthamanartham Bhavaya Nityam\nKaashtaa Taa Pasu Dehinam\nKaamavagamam Nartanaa\nChidyaamaano Harati Maasaakaih",lines:[["Artham","Wealth"],["Anartham","purposeless/in vain/danger-productive"],["Bhavaya","deem/consider/visualise"],["Nityam","daily/always"],["Na","Not"],["Asti","Is"],["Tata (ha)","from that"],["Sukha Lesa (ha)","(even a little) happiness"],["Satyam","Truth"],["Putraadapi","even from the son"],["Dhana","Wealth"],["Bhaajaam","acquiring people"],["Bheethihi","Fear"],["Sarvatra","Everywhere"],["Eshaa","This"],["Vihitaa","Understood"],["Reetihi","procedure/practice/custom"]],meaning:"It is wealth only that cause all harm and brings about one's ruin. Bear this truth in mind always. Know that the pursuit of wealth does not lead one to happiness at all. The rich are afraid of even their own sons. This is the outcome of riches anywhere and at all times."},
+          {title:"Punarapi Jananam",category:"Bhaja Govindam",audio:"",shloka:"Punarapi Jananam Punarapi Maranam\nPunarapi Jananee Jathare Shayanam\nIha Samsaare Bahukaastvaare\nKhala Karmakritaam Kaamukah",lines:[["Punarapi","again again"],["Jananam","Birth"],["Maranam","Death"],["Jananee","Mother"],["Jathare","in the stomach"],["Shayanam","Sleep"],["Iha","in this world/here"],["Samsare","family/world"],["Bahu dustaare","fordable with great difficulty"],["Kripaya paare","out of boundless compassion"],["Paahi","Protect"],["Murare","Oh Mura's enemy!(Krishna)"]],meaning:"Undergoing the pangs of birth again and again, passing through the throes of death again and again, lying in the mother's womb over and over again, this process of Samsara is hard to cross over. Save me from it soon, Oh, Merciful Lord!"},
+          {title:"Kamam Krodham",category:"Bhaja Govindam",audio:"",shloka:"Kamam Krodham Lobham Moham\nTyaktva Sambhavimaanataam\nTaavat Nischaya Proktam\nJeevane Saaram Ucchyate",lines:[["Kamam","Desire"],["Krodham","Anger"],["Lobham","Greed"],["Moham","delusion [infatuation / attachment]"],["Tyaktva","having left"],["Atmanam","self"],["Pashyati","See/deem/consider/visualise/imagine"],["Soham","He am I"],["Aatmajnana","knowledge of self"],["Viheena","Bereft"],["Mudaah","Fools"],["Te","They"],["Pachyante","Are cooked (tortured)"],["Narak","In the hell"],["Nigoodhah","Cast in"]],meaning:"Free yourself from qualities like lust, anger, greed and attachment (delusion). Contemplate on 'who you are'. Enquire within yourself 'who am I?' Those who fail to apprehend the Self are caught in hell-fire even here and suffer torture."},
+          {title:"Geyam Geeta",category:"Bhaja Govindam",audio:"",shloka:"Geyam Geeta Naamavasanaapi\nGajaa Ekaashtottara Sataani Kaamukah\nKaamini Yajamanaaya Havyam\nVahnau Harati Kaashtaa",lines:[["Geyam","is to be sung"],["Geeta","Bhagavad Gita"],["Nama","name of the lord"],["Sahasram","1000 times"],["Dhyeyam","is to be meditated"],["Shreepati","Lakshmi's consort; MahaVishnu's"],["roopam","form/image"],["ajasram","the unborn one"],["Neyam","is to be lead/taken"],["Sajjana","good people"],["Sange","in the company"],["Chittam","Mind"],["Deyam","is to be given"],["Deenajanaaya","to the poor (humble state) people"],["Cha","And"],["Vittam","Wealth"]],meaning:"Recite the Gita; chant the thousand names of the Lord (Vishnu Sahasranama); meditate ceaselessly on the consort and Lord of Lakshmi; lead the mind toward association with the good. Give away your wealth in charity to the needy and the poor."},
+          {title:"Gurucharanambuja",category:"Bhaja Govindam",audio:"",shloka:"Gurucharanambuja Parivratam\nDaamana Moolam Shri Gurugangam Vaa\nBhaktam Shri Guru Chidambare Bhaje",lines:[["Gurucharanambuja","the lotus feet of the teacher / guru"],["Nirbhara","dependent"],["Bhaktah","Devotee"],["Samsaraad","from the world"],["Achiradbhava","in no time from the cycle of birth and death"],["Muktah","Released"],["Sendriyamanasa","sa+indriya+manasa, with senses and mind"],["Niyamadevam","control alone(niyamat eva)"],["Drakshyasi","you will see"],["Nija","one's own"],["Hridayastham","heart-stationed"],["Devam","God"]],meaning:"Surrender yourself at the Lotus Feet of the Teacher; with your senses and mind disciplined and freed from the shackles of the Samsara you will behold the Lord who is seated in your heart."}
         ]},
         {name:'Year III',desc:'Prayer',slokas:[
           {title:"Vedam Tutor 2",category:"Prayer",audio:"",shloka:"Various Vedic mantras",lines:[["Vedam","Sacred Vedic chants"]],meaning:"Advanced Vedic chanting for Group II Year III students."},
-          {title:"Omkar and Pranayam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Omkar_Pranayamam.mp3",shloka:"Om Pranavasya Param Brahma\nTasmaat Om Nityamuchyate",lines:[["Om Pranavasya Param Brahma","Om is the supreme Brahman"],["Tasmaat Om Nityamuchyate","Therefore Om is chanted always"]],meaning:"The Pranava (Om) is the supreme Brahman. Therefore Om is chanted always."},
-          {title:"Deepam Jyoti",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Deepam_Jyoti.mp3",shloka:"Deepajyothir Parabrahma\nDeepajyothir Janaardanah\nDeeppo Me Haratu Paapam\nSandhya Deepam Namaamyaham",lines:[["Deepajyothir Parabrahma","The lamp's light is the Supreme Brahman"],["Deepajyothir Janaardanah","The lamp's light is Lord Vishnu"],["Deeppo Me Haratu Paapam","May this lamp remove my sins"],["Sandhya Deepam Namaamyaham","I bow to this evening lamp"]],meaning:"The light of the lamp is the Supreme Brahman. The light of the lamp is Lord Janardana. May this lamp remove my sins. I bow to this evening lamp."},
-          {title:"Food Prayers",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Food_Prayers.mp3",shloka:"Brahmaarpanam Brahma Havir\nBrahmaagnau Brahmanaa Hutam\nBrahmaiva Tena Gantavyam\nBrahma Karma Samaadhinah",lines:[["Brahmaarpanam Brahma Havir","The offering is God, the offering food is God"],["Brahmaagnau Brahmanaa Hutam","Offered in the fire of God by God"],["Brahmaiva Tena Gantavyam","God alone is to be attained"],["Brahma Karma Samaadhinah","Through absorbed action in God"]],meaning:"The act of offering is God, the offering itself is God, offered by God in the sacred fire which is God. Through such actions one attains God."},
-          {title:"Ashtotaram [55-108] Slokas",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/04/ashtothram.mp3",shloka:"Om Anantaya Namah\nOm Suparnaya Namah",lines:[["Om Anantaya Namah","Salutations to the infinite one"],["Om Suparnaya Namah","Salutations to the beautiful-winged one"]],meaning:"Names of Lord Vishnu - names 55 to 108 of the 108 holy names."},
+          {title:"Omkar and Pranayam",category:"Prayer",audio:"",shloka:"Om Pranavasya Param Brahma\nTasmaat Om Nityamuchyate",lines:[["Om Pranavasya Param Brahma","Om is the supreme Brahman"],["Tasmaat Om Nityamuchyate","Therefore Om is chanted always"]],meaning:"The Pranava (Om) is the supreme Brahman. Therefore Om is chanted always."},
+          {title:"Deepam Jyoti",category:"Prayer",audio:"",shloka:"Deepajyothir Parabrahma\nDeepajyothir Janaardanah\nDeeppo Me Haratu Paapam\nSandhya Deepam Namaamyaham",lines:[["Deepajyothir Parabrahma","The lamp's light is the Supreme Brahman"],["Deepajyothir Janaardanah","The lamp's light is Lord Vishnu"],["Deeppo Me Haratu Paapam","May this lamp remove my sins"],["Sandhya Deepam Namaamyaham","I bow to this evening lamp"]],meaning:"The light of the lamp is the Supreme Brahman. The light of the lamp is Lord Janardana. May this lamp remove my sins. I bow to this evening lamp."},
+          {title:"Food Prayers",category:"Prayer",audio:"",shloka:"Brahmaarpanam Brahma Havir\nBrahmaagnau Brahmanaa Hutam\nBrahmaiva Tena Gantavyam\nBrahma Karma Samaadhinah",lines:[["Brahmaarpanam Brahma Havir","The offering is God, the offering food is God"],["Brahmaagnau Brahmanaa Hutam","Offered in the fire of God by God"],["Brahmaiva Tena Gantavyam","God alone is to be attained"],["Brahma Karma Samaadhinah","Through absorbed action in God"]],meaning:"The act of offering is God, the offering itself is God, offered by God in the sacred fire which is God. Through such actions one attains God."},
+          {title:"Ashtotaram [55-108] Slokas",category:"Prayer",audio:"",shloka:"Om Anantaya Namah\nOm Suparnaya Namah",lines:[["Om Anantaya Namah","Salutations to the infinite one"],["Om Suparnaya Namah","Salutations to the beautiful-winged one"]],meaning:"Names 55 to 108 of the 108 holy names of Lord Vishnu, completing the sacred recitation of His divine names."},
           {title:"Ishaa Vasyamidam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Ishavasyam.mp3",shloka:"Ishaa Vasyamidam Sarvam\nYat Kinchit Jagatyam Jagat\nTenaa Tyaktena Bhuunjeetha\nMaa Gridhah Kasya Svid Dhanam",lines:[["Ishaa Vasyamidam Sarvam","All this is pervaded by the Lord"],["Yat Kinchit Jagatyam Jagat","Whatever there is in this moving world"],["Tenaa Tyaktena Bhuunjeetha","Enjoy through renunciation"],["Maa Gridhah Kasya Svid Dhanam","Do not covet anyone's wealth"]],meaning:"All this, whatever moves in this moving world, is pervaded by the Lord. Enjoy through renunciation. Do not covet the wealth of anyone."},
-          {title:"Poornamidam",category:"Prayer",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/06/Poornamidam.mp3",shloka:"Poornamadah Poornamidam\nPoornaat Poornam Udachyate\nPoornasya Poornaamaadaaya\nPoornam Evaavashishyate",lines:[["Poornamadah Poornamidam","That is complete, this is complete"],["Poornaat Poornam Udachyate","From completeness comes completeness"],["Poornasya Poornaamaadaaya","Taking completeness from completeness"],["Poornam Evaavashishyate","Completeness alone remains"]],meaning:"That is complete, this is complete. From completeness comes completeness. When completeness is taken from completeness, completeness alone remains."}
+          {title:"Poornamidam",category:"Prayer",audio:"",shloka:"Poornamadah Poornamidam\nPoornaat Poornam Udachyate\nPoornasya Poornaamaadaaya\nPoornam Evaavashishyate",lines:[["Poornamadah Poornamidam","That is complete, this is complete"],["Poornaat Poornam Udachyate","From completeness comes completeness"],["Poornasya Poornaamaadaaya","Taking completeness from completeness"],["Poornam Evaavashishyate","Completeness alone remains"]],meaning:"That is complete, this is complete. From completeness comes completeness. When completeness is taken from completeness, completeness alone remains."}
         ]}
       ]},
       {id:'group3',name:'Group III',desc:'Advanced Gita slokas, Vedam, and Sadhana practices (Ages 12-15).',
       years:[
         {name:'Year I',desc:'Bhagavad Gita - Jnana, Karma and Declaration',slokas:[
-          {title:"Nahi Jnaanena",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Nahi-Gnanena.mp3",shloka:"Nahi Jnaanena Sadrisham\nPavitram Iha Vidyate\nTat Swayam Yoga Samsiddhah\nKaalenatmani Vindati",lines:[[["Nahi","Not"],["Jnaanena","By knowledge"],["Sadrisham","Comparable"]],[["Pavitram","Purifier"],["Iha","In this world"],["Vidyate","Exists"]],[["Tat","That"],["Swayam","Himself"],["Yoga Samsiddhah","Perfected through Yoga"]],[["Kaalenatmani","In course of time in his self"],["Vindati","Finds"]]],meaning:"In this world, wisdom is the great purifier. One who has perfected himself in Yoga will realize this truth within himself."},
-          {title:"Shraddhaavaan Labhate",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Shraddhavan-1.mp3",shloka:"Shraddhaavaan Labhate Jnaanam\nTat Parah Sanyatendriyah\nJnaanam Labdhvaa Paraam Shaantim\nAchirenaaadhigacchati",lines:[[["Shraddhaavaan","One with faith"],["Labhate","Achieves"],["Jnaanam","Divine Knowledge"]],[["Tat Parah","Devoted to that"],["Sanyatendriyah","With controlled senses"]],[["Jnaanam","Transcendental knowledge"],["Labdhvaa","Having achieved"],["Paraam Shaantim","Supreme peace"]],[["Achirenaaadhigacchati","Attains without delay"]]],meaning:"A person with steadfast faith who has mastered his senses will obtain wisdom. Having obtained wisdom, he will soon enjoy supreme mental peace."},
-          {title:"KarmaNyevaadhikaaraste",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/karmanyevadhikaraste.mp3",shloka:"KarmaNyevaadhikaaraste\nMaa Phaleshu Kadaachana\nMaa Karma Phala Hetur Bhur\nMaa Te Sango Stv Akarmani",lines:[[["KarmaNyeva","In action alone"],["Adhikaaraste","Your right"],["Maa Phaleshu","Not in the fruits"],["Kadaachana","Never"]],[["Maa","Not"],["Karma Phala","Fruit of action"],["Hetur","Motive"],["Bhur","Overtly"]],[["Maa Te Sango","Let not your attachment"],["Astv","Be"],["Akarmani","In inaction"]]],meaning:"Your right is to action alone, never to its fruits. Let not the fruit of action be your motive, nor let your attachment be to inaction."},
-          {title:"Tasmaada-saktas",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Tasmadasaktha.mp3",shloka:"Tasmaad Asaktah Satatam\nKaaryam Karma Samachara\nAsakto Hyaacharan Karma\nParam Aapnoti Poorushah",lines:[[["Tasmaad","Therefore"],["Asaktah","Without attachment"],["Satatam","Always"]],[["Kaaryam Karma","Prescribed duties"],["Samachara","Perform"]],[["Asakto","Without attachment"],["Hyaacharan","Performing"],["Karma","Action"]],[["Param","The Supreme"],["Aapnoti","Attains"],["Poorushah","A person"]]],meaning:"Therefore, without attachment, always perform the action that must be done. By performing action without attachment, one attains the Supreme."},
-          {title:"Ananyaas Chinta",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Ananyas-Chintayantho.mp3",shloka:"Ananyaas Chintayanto Maam\nYe Janaah Paryupaasate\nTesham Nityabhiyuktanaam\nYoga Kshemam Vahaamy Aham",lines:[[["Ananyaas Chintayanto","Thinking of Me alone"],["Maam","Me"]],[["Ye Janaah","Those people"],["Paryupaasate","Worship exclusively"]],[["Tesham","Their"],["Nityabhiyuktanaam","Always engaged"]],[["Yoga Kshemam","Welfare and protection"],["Vahaamy Aham","I carry"]]],meaning:"Those who always think of Me and worship Me with single-minded devotion -- for them I carry what they lack and preserve what they have."}
+          {title:"Nahi Jnaanena",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Nahi-Gnanena.mp3",shloka:"Nahi Jnaanena Sadrisham\nPavitram Iha Vidyate\nTat Swayam Yoga Samsiddhah\nKaalenatmani Vindati",lines:[["Na","No"],["Hi","Surely"],["Gnanena Sadrusham","Equal to knowledge"],["Pavitram","Purifier"],["Iha","Here (in this world)"],["Vidyate","There is"],["Tat","That (Knowledge)"],["Swayam","Himself"],["Yoga Samsiddhaha","One who is perfected through Yoga"],["Kaalena","In course of time"],["Aatmani","In his self"],["Vindati","Finds"]],meaning:"In this world, wisdom is the great purifier. A person who has controlled his senses and thus perfected himself in Yoga will realise this truth within himself, in course of time."},
+          {title:"Shraddhaavaan Labhate",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Shraddhavan-1.mp3",shloka:"Shraddhaavaan Labhate Jnaanam\nTat Parah Sanyatendriyah\nJnaanam Labdhvaa Paraam Shaantim\nAchirenaaadhigacchati",lines:[["śhraddhāvān","A faithful person"],["Labhate","Achieves"],["Jnaanam","Divine Knowledge"],["tat-paraḥ","devoted (to that)"],["sanyata","Controlled"],["indriyaḥ","Senses"],["jñānam","Transcendental knowledge"],["labdhvā","having achieved"],["parām","supreme"],["śhāntim","Peace"],["achireṇa","without delay"],["adhigachchhati","Attains"]],meaning:"A person with a steadfast faith and a sincere yearning and who has also mastered his senses, will obtain wisdom. Having obtained wisdom, he will soon enjoy supreme mental peace."},
+          {title:"KarmaNyevaadhikaaraste",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/karmanyevadhikaraste.mp3",shloka:"KarmaNyevaadhikaaraste\nMaa Phaleshu Kadaachana\nMaa Karma Phala Hetur Bhur\nMaa Te Sango Stv Akarmani",lines:[["Karmanya","In the Work"],["Yeva","Only"],["Adhikaaraha","Right"],["Te","Your"],["Maa","Not/No"],["PHALESHU","In the fruit/result (the root word is Phal, means fruits of work)"],["Kadaachana","Ever or At any time (Ma + Kadaachana = No + ever = Never)"],["Maa","Not/No"],["Karma phala","Result or fruits of the work"],["Hetu","Motive/Reason"],["BHUHU","Be"],["Maa astu","Let not be"],["Te","Your"],["SANGAHA","Attachment"],["Astu","Let there be"],["AkarmaNI","In inaction"]],meaning:"You have the right to work, but do not crave for the fruits of actions or works. Let not be the fruits of action, your motive. At the same time the Lord warns us that on account of this do not give up action and become chronically inactive."},
+          {title:"Tasmaada-saktas",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Tasmadasaktha.mp3",shloka:"Tasmaad Asaktah Satatam\nKaaryam Karma Samachara\nAsakto Hyaacharan Karma\nParam Aapnoti Poorushah",lines:[["Tasmāt","Therefore"],["Asaktaḥ","Without Attachment"],["Satatam","Constantly"],["kāryam","duty"],["karma","Action"],["samāchara","Perform"],["asaktaḥ","unattached"],["Hi","Certainly"],["ācharan","Performing"],["param","The Supreme"],["āpnoti","Attains"],["pūruṣhaḥ","A Person"]],meaning:"Therefore do your duty always without attachment. He who works without attachment, attains the highest goal. This highest goal in life is peace of mind."},
+          {title:"Ananyaas Chinta",category:"Gita - Jnana & Karma",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Ananyas-Chintayantho.mp3",shloka:"Ananyaas Chintayanto Maam\nYe Janaah Paryupaasate\nTesham Nityabhiyuktanaam\nYoga Kshemam Vahaamy Aham",lines:[["Ananyāḥ","Always"],["chintayantaḥ","Think of"],["mām","Me"],["Ye","Those who"],["Janāḥ","Persons"],["Paryupāsate","Worship exclusively"],["Teṣhām","Of them"],["Nitya Abhiyuktānām","Who are always absorbed"],["Yoga","Supply Spiritual Assets"],["Kṣhemam","Protect Spiritual Assets"],["Vahami","Carry"],["Aham","I"]],meaning:"The Lord's Grand Declaration. I assure protection for those, who always think of Me with single minded purpose, who offer worship to Me and thus always are united with me, in thought. I will fulfill their needs and look after their welfare."}
         ]},
         {name:'Year II',desc:'Vedam & Bhagavad Gita - Sadhana',slokas:[
           {title:"Vedam Tutor 3",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Various Vedic chants",lines:[["Vedam","Sacred Vedic chants"]],meaning:"Advanced Vedic chanting for Group III Year II students."},
-          {title:"Uddharedaatma",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Uddhare.mp3",shloka:"Uddharedaatmanaatmaanaam\nNaatmaanam Avasaadayet\nAatmaiva Hyaatmano Bandhur\nAatmaiva Ripur Aatmanah",lines:[["Uddharedaatmanaatmaanaam","Let a man lift himself by his own self"],["Naatmaanam Avasaadayet","Let him not degrade himself"],["Aatmaiva Hyaatmano Bandhur","The self alone is the friend of the self"],["Aatmaiva Ripur Aatmanah","The self alone is the enemy of the self"]],meaning:"Let a man lift himself by his own self. Let him not lower himself. For the self alone is the friend of the self, and the self alone is the enemy of the self."},
-          {title:"Idam Shareeram",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Idam_Shareeram.mp3",shloka:"Idam Shareeram Kaunteya\nKshetram iti Abhidheeyate\nEtad Yo Vetti Tam Praahuh\nKshetrajna iti Tad Vidah",lines:[["Idam Shareeram Kaunteya","This body, O Kaunteya"],["Kshetram iti Abhidheeyate","Is called the field"],["Etad Yo Vetti Tam Praahuh","One who knows this is called"],["Kshetrajna iti Tad Vidah","The knower of the field by the wise"]],meaning:"This body, O Kaunteya, is called the field. One who knows it is called the knower of the field by the wise."},
-          {title:"Satwam Rajas",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Satvam_Rajas.mp3",shloka:"Satwam Rajas Tama Iti Gunaaah\nPrakriti Sambhavaah\nNibadhnanti Mahaa Baaho\nDehe Dehinam Avyayam",lines:[["Satwam Rajas Tama Iti Gunaaah","Sattva, Rajas and Tamas are the three qualities"],["Prakriti Sambhavaah","Born of Prakriti (nature)"],["Nibadhnanti Mahaa Baaho","They bind, O mighty-armed one"],["Dehe Dehinam Avyayam","The imperishable soul in the body"]],meaning:"Sattva, Rajas, and Tamas are the qualities born of nature. They bind the imperishable soul in the body, O mighty-armed one."},
-          {title:"Adweshtaa",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Adweshtaa.mp3",shloka:"Adweshtaa Sarvabhootaanam\nMaitrah Karuna Eva Cha\nNirmamo Nirahankarah\nSame Duhkha Sukhah Kshamee",lines:[["Adweshtaa Sarvabhootaanam","Not hating any being"],["Maitrah Karuna Eva Cha","Friendly and compassionate"],["Nirmamo Nirahankarah","Without ego and sense of ownership"],["Same Duhkha Sukhah Kshamee","Equal in pleasure and pain, forgiving"]],meaning:"Having no hatred towards any being, friendly and compassionate, free from ego, equal in pleasure and pain, forgiving."},
-          {title:"Anudvegakaram",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Anudvegakaram.mp3",shloka:"Anudvegakaram Vaakyam\nSatyam Priyahitam Cha Yad\nSvaaadhyaayaabhyasanam Cha\nVedaanaam Tat Samahvitam",lines:[["Anudvegakaram Vaakyam","Speech that causes no anxiety"],["Satyam Priyahitam Cha Yad","That which is true, pleasant and beneficial"],["Svaaadhyaayaabhyasanam Cha","Study and practice"],["Vedaanaam Tat Samahvitam","The study of the Vedas with concentration"]],meaning:"Speech that causes no anxiety, that is true, pleasant and beneficial, the study of the Vedas and practice of austerities."},
-          {title:"Trividham",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Trividham.mp3",shloka:"Trividham Narakasyedam Dwaaram\nNaashanamaatmanah\nKaamah Krodhastathaa Lobhah\nTasmaad Etat Trayaam Tyajet",lines:[["Trividham Narakasyedam Dwaaram","These are the three gates of hell"],["Naashanamaatmanah","The destroyers of the self"],["Kaamah Krodhastathaa Lobhah","Desire, anger and greed"],["Tasmaad Etat Trayaam Tyajet","Therefore, abandon these three"]],meaning:"The three gates to hell are desire, anger, and greed. Therefore, one should abandon these three."},
-          {title:"Shreyohi",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Shreyohi.mp3",shloka:"Shreyohi Swavibhaago Bhikshaa\nSvadharmo Vigunah Paradharmaat\nSvanushthitaat Svadharme\nNidhanam Shreyah",lines:[["Shreyohi Swavibhaago Bhikshaa","Better is one's own duty, even if poorly done"],["Svadharmo Vigunah Paradharmaat","One's own dharma, even imperfectly"],["Svanushthitaat Svadharme Nidhanam Shreyah","Than the dharma of another, well performed"]],meaning:"Better is one's own dharma, though imperfectly performed, than the dharma of another well performed. Better is death in one's own dharma."}
+          {title:"Uddharedaatma",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Uddharedaatmanaatmaanaam\nNaatmaanam Avasaadayet\nAatmaiva Hyaatmano Bandhur\nAatmaiva Ripur Aatmanah",lines:[["UDDHARET","Raise"],["AATMANAA","By his own self"],["NA","No (not)"],["AATMAANAM","Himself"],["AVASAADAYET","Allow to sink"],["AATMAIVA (AATMAA+YEVA)","He himself alone"],["HYAATMANO (HI + AATMANAHA)","For (because) His"],["BANDHUHU","Friends"],["AATMAIVA","He himself alone"],["RIPUHU","Enemy"],["AATMANAHA","His"]],meaning:"Man should raise himself by his own self. He should not degrade himself. Because, his own self is his friend and own self is his enemy."},
+          {title:"Idam Shareeram",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Idam Shareeram Kaunteya\nKshetram iti Abhidheeyate\nEtad Yo Vetti Tam Praahuh\nKshetrajna iti Tad Vidah",lines:[["Idam","This"],["Shareeram","Body"],["Kaunteya","Oh Son of Kunti (Arjuna)"],["Kshetra mityabhi dheeyate","= Kshetram + iti + abhidheeyate (Kshetram iti, Abhidheeyate) -> As field, Is called"],["Yetadyo","= Yetat + Yaha (Yetat, Yaha) -> This, Whosoever"],["Veththi","Knows"],["Tam","Him"],["Praahuhu","They call"],["Kshetragna iti","As Knower of the field"],["Tadvidaha","= Tat + Vidaha -> Those who know the truth about them (about Kshetra and Kshetragna)"]],meaning:"O' Son of Kunti! (Arjuna) Know that this body is described as the field. One who understands this description is called the master of the field."},
+          {title:"Satwam Rajas",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Satwam Rajas Tama Iti Gunaaah\nPrakriti Sambhavaah\nNibadhnanti Mahaa Baaho\nDehe Dehinam Avyayam",lines:[["Satwam","Satwa GuNaa"],["Rajaha","Rajo GuNaa"],["Tamaha","Tamo GuNaa"],["Iti","These"],["GuNaahaa","GuNaas (qualities)"],["Prakruti Sambhavaahaa","Spring from Nature (Nature born)"],["Nibadhnanti","Bind"],["Mahaabaaho","Oh Mighty Armed One (Arjuna)"],["Dehe","In the body"],["Dehinam","Soul (jivaatmaa)"],["Avyayam","Immutable"]],meaning:"O' Arjuna! The three guNaas (qualities) – Satwa, Rajas and Tamas are born of nature only. These qualities bind the imperishable soul to the body."},
+          {title:"Adweshtaa",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Adweshtaa Sarvabhootaanam\nMaitrah Karuna Eva Cha\nNirmamo Nirahankarah\nSame Duhkha Sukhah Kshamee",lines:[["AdweShtaa","Never hates"],["Sarva bhootaanaam","All beings"],["Maitraha","Is friendly"],["Karuna yeva","Compassionate only"],["Cha","And"],["Nirmamaha","Free from ego (free from feelings of mine or I)"],["Nirahankaaraha","Free from pride"],["Sama","Equal"],["Duhkkha","Pain or Sorrow"],["Sukha","Pleasure or Happiness"],["Sama duhkkha sukha","Considers pain and pleasure as equal"],["Kshamee","Forgiving"]],meaning:"One should never have hatred towards anyone. One must be even compassionate and must be free from attachment and egoism (the feeling of I and Mine) one must be equal minded both in sorrow and happiness. One must be forgiving."},
+          {title:"Anudvegakaram",category:"Vedam & Gita - Sadhana",audio:"",shloka:"Anudvegakaram Vaakyam\nSatyam Priyahitam Cha Yad\nSvaaadhyaayaabhyasanam Cha\nVedaanaam Tat Samahvitam",lines:[["Anudvegakaram","Unoffensive"],["Vaakyam","Speech"],["Satyam","Truthful"],["Priyahitam","Pleasant and wholesome (Beneficial)"],["Chayat","= Cha + Yat (Cha, Yat) -> And, That"],["Swaadhyaa yaabhyasanam","= Swaadhyaya + Abhyasanam -> Study of sacred texts and practice of"],["Chaiva","= Cha + Yeva -> And only"],["Vaangmayam","Of speech"],["Tapa","Austerity"],["Uchyate","Are called"]],meaning:"Unoffensive, truthful, pleasant and beneficial speech, the practice of the study of sacred texts are called austerity of speech."},
+          {title:"Trividham",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Trividham.mp3",shloka:"Trividham Narakasyedam Dwaaram\nNaashanamaatmanah\nKaamah Krodhastathaa Lobhah\nTasmaad Etat Trayaam Tyajet",lines:[["Trividham","Triple"],["Narakas yedam","= Narakasya + Idam (Narakasya, Idam) -> Of hell, This"],["Dwaaram","Gate"],["Naashana maatmanaha","= Naashanam + Aatmanaha (Naashanam, Aatmanaha) -> Damnation, Of the self (soul)"],["Kaamaha","Lust"],["Krodhaha","Anger"],["Tathaa","And"],["Lobhaha","Greed"],["Tasmaadetat","= Tasmaat + Yetat (Tasmaat, Yetat) -> Therefore, These"],["Trayam","Three"],["Tyajet","Should abandon (give up)"]],meaning:"Passion, wrath and greed constitute the three fold gate to hell, that brings ruin upon the self.(One has to face the consequences of lust, anger and greed now and here and also hereafter). Therefore one should abandon these three."},
+          {title:"Shreyohi",category:"Vedam & Gita - Sadhana",audio:"https://sssbalvikas-s3.s3.ap-south-1.amazonaws.com/wp-content/uploads/2021/07/Shreyohi.mp3",shloka:"Shreyohi Swavibhaago Bhikshaa\nSvadharmo Vigunah Paradharmaat\nSvanushthitaat Svadharme\nNidhanam Shreyah",lines:[["Shreyohi","It is indeed exemplary"],["Jnaanam","Wisdom"],["Abhyaasaat","More than practice"],["Jnnaanat","More than wisdom"],["Dhyaanam","Meditation"],["VisiShyate","Is better"],["Dhyaanaat","More than meditation"],["Karma Phala Tyaagaha","Renunciation of fruits of action"],["Tyaagaat-cchaanti-ranantaram","= Tyaagaat + Shaantihi + Anantaram (Tyaagaat, Shaantihi, Anantaram) -> More than renunciation, Peace, After that"]],meaning:"Knowledge is better than practice (done without insight or knowledge); better than knowledge is meditation, better than meditation is renunciation of the fruits of action, for peace follows such renunciation. Peace is the aim, for which man strives to attain, in life."}
         ]}
       ]}
     ];
@@ -320,11 +552,17 @@
       var hero=document.getElementById('hero');
       hero.style.display='';
       var app=document.getElementById('app');
-      var html='<div class="group-cards">';
+      var html='<div class="group-cards" role="list">';
       groups.forEach(function(g,gi){
-        html+='<div class="group-card" onclick="openGroup('+gi+')">';
-        html+='<h2>'+g.name+'</h2>';
-        html+='<p>'+g.desc+'</p>';
+        var descParts=g.desc.match(/(.*?)\((.*?)\)/);
+        var name=g.name;
+        var age=descParts?descParts[2]:'';
+        var desc=descParts?descParts[1].trim():g.desc;
+        html+='<div class="group-card" role="listitem" tabindex="0" aria-label="'+name+' — '+g.desc+'" onclick="openGroup('+gi+')" onkeydown="if(event.key===\'Enter\')openGroup('+gi+')">';
+        html+='<div class="card-name">'+name+'</div>';
+        if(age)html+='<div class="card-age">'+age+'</div>';
+        html+='<div class="card-desc">'+desc+'</div>';
+        html+='<div class="card-explore">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>';
         html+='</div>';
       });
       html+='</div>';
@@ -338,10 +576,23 @@
       hero.style.display='none';
       var g=groups[idx];
       var app=document.getElementById('app');
+      var allSlokas=[];
+      g.years.forEach(function(y,yi){
+        y.slokas.forEach(function(s,sidx){
+          allSlokas.push({sloka:s,id:idx+'-'+yi+'-'+sidx});
+        });
+      });
+      var prevGroup=idx>0?idx-1:null;
+      var nextGroup=idx<groups.length-1?idx+1:null;
       var html='';
       html+='<div style="max-width:900px;margin:0 auto;padding:16px">';
-      html+='<button class="back-btn" onclick="goBack()"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>';
-      html+='<div class="group-heading" style="border-top:none;padding-top:0;margin-top:0">'+g.name+'</div>';
+      html+='<div class="top-nav">';
+      html+='<div class="top-nav-links">';
+      html+='<button class="nav-link nav-home" onclick="goBack()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>';
+      if(prevGroup!==null)html+='<button class="nav-link" onclick="openGroup('+prevGroup+')">← '+groups[prevGroup].name+'</button>';
+      if(nextGroup!==null)html+='<button class="nav-link" onclick="openGroup('+nextGroup+')">'+groups[nextGroup].name+' →</button>';
+      html+='</div></div>';
+      html+='<div class="group-heading" style="border-top:none;padding-top:0;margin-top:0">'+g.name+' <span class="sloka-count">'+allSlokas.length+' Slokas</span></div>';
       html+='<div class="group-desc">'+g.desc+'</div>';
       g.years.forEach(function(y,yi){
         html+='<div class="year-heading">'+y.name+' - '+y.desc+'</div>';
@@ -376,13 +627,27 @@
       }
 
       var wordMap={};
+      function norm(w){
+        return w.toLowerCase()
+          .replace(/aa/g,'a').replace(/ee/g,'i').replace(/oo/g,'u')
+          .replace(/ai/g,'e').replace(/au/g,'o')
+          .replace(/kh/g,'k').replace(/gh/g,'g').replace(/ch/g,'c')
+          .replace(/jh/g,'j').replace(/th/g,'t').replace(/dh/g,'d')
+          .replace(/ph/g,'p').replace(/bh/g,'b')
+          .replace(/[^aeiou\s]/g,function(c,i,s){
+            if(i===s.length-1&&(c==='n'||c==='h'||c==='m'))return '';
+            return c;
+          })
+          .replace(/([^aeiou])\1+/g,'$1');
+      }
       flatWords.forEach(function(fw){
-        var key=fw.word.toLowerCase().replace(/\s+/g,'');
+        var key=norm(fw.word.replace(/[\s\-]+/g,''));
         if(!wordMap[key])wordMap[key]=fw.meaning;
-        var parts=fw.word.toLowerCase().split(/\s+/);
+        var parts=fw.word.toLowerCase().split(/[\s\-]+/);
         if(parts.length>1){
           parts.forEach(function(p){
-            if(!wordMap[p])wordMap[p]=fw.meaning;
+            var nk=norm(p);
+            if(nk&&nk.length>=2&&!wordMap[nk])wordMap[nk]=fw.meaning;
           });
         }
       });
@@ -392,13 +657,32 @@
           var concat='';
           var spaced='';
           for(var j=0;j<len;j++){
-            concat+=shlokaWords[startIdx+j].toLowerCase();
-            spaced+=shlokaWords[startIdx+j].toLowerCase();
+            concat+=norm(shlokaWords[startIdx+j]);
+            spaced+=norm(shlokaWords[startIdx+j]);
             if(j<len-1)spaced+=' ';
           }
           if(wordMap[concat])return{meaning:wordMap[concat],count:len};
           if(wordMap[spaced])return{meaning:wordMap[spaced],count:len};
         }
+        var w=norm(shlokaWords[startIdx]);
+        for(var split=1;split<w.length;split++){
+          var p1=w.substring(0,split);
+          var p2=w.substring(split);
+          if(wordMap[p1]&&wordMap[p2])return{meaning:wordMap[p1]+', '+wordMap[p2],count:1};
+        }
+        var keys=Object.keys(wordMap);
+        var best=null;var bestLen=0;
+        for(var k=0;k<keys.length;k++){
+          var mk=keys[k];
+          if(mk.length<2)continue;
+          if(mk.indexOf(w)===0||w.indexOf(mk)===0){
+            if(mk.length>bestLen){best=wordMap[mk];bestLen=mk.length;}
+          }
+          else if(w.length>=3&&mk.length>=3&&(w.indexOf(mk)!==-1||mk.indexOf(w)!==-1)){
+            if(mk.length>bestLen){best=wordMap[mk];bestLen=mk.length;}
+          }
+        }
+        if(best)return{meaning:best,count:1};
         return null;
       }
 
@@ -426,10 +710,9 @@
       var html='<div class="sloka-card">';
       html+='<div class="sloka-header"><div><div class="sloka-title">'+s.title+'</div><div class="sloka-category">'+s.category+'</div></div>';
       html+='<div class="sloka-audio">';
-      html+='<button class="audio-btn" id="abtn'+aid+'" data-aid="'+aid+'" data-audio="'+s.audio.replace(/"/g,'&quot;')+'"><svg viewBox="0 0 24 24" id="aicon'+aid+'"><path d="M8 5v14l11-7z"/></svg></button>';
+      html+='<button class="audio-btn" id="abtn'+aid+'" data-aid="'+aid+'" data-audio="'+s.audio.replace(/"/g,'&quot;')+'" aria-label="Play '+s.title+'"><svg viewBox="0 0 24 24" id="aicon'+aid+'"><path d="M8 5v14l11-7z"/></svg></button>';
       html+='<div class="audio-controls" id="actrl'+aid+'"><input type="range" class="audio-progress" id="aprog'+aid+'" min="0" max="100" value="0" oninput="seekSlokaAudio(\''+aid+'\',this.value)"><div class="audio-time"><span id="atime'+aid+'">0:00</span> / <span id="adur'+aid+'">0:00</span></div></div>';
       html+='</div></div>';
-      html+='<div class="sloka-divider"></div>';
       html+='<div class="sloka-text">'+linesHtml+'</div>';
       html+='<div class="sloka-meaning">'+s.meaning+'</div>';
       html+='</div>';
@@ -442,6 +725,7 @@
       if(!tooltipEl){
         tooltipEl=document.createElement('div');
         tooltipEl.className='tooltip-bubble';
+        tooltipEl.setAttribute('role','tooltip');
         document.body.appendChild(tooltipEl);
       }
     }
@@ -475,19 +759,14 @@
       app.addEventListener('touchstart',function(e){
         var w=e.target.closest('.tw');
         if(w){e.preventDefault();e.stopPropagation();showTip(w);}
-        else hideTip();
+        else if(!e.target.closest('.sloka-audio'))hideTip();
       },{passive:false});
       app.addEventListener('click',function(e){
-        var w=e.target.closest('.tw');
-        if(w){e.stopPropagation();showTip(w);}
         var btn=e.target.closest('.audio-btn');
         if(btn){var aid=btn.getAttribute('data-aid');var url=btn.getAttribute('data-audio');if(url)toggleSlokaAudio(aid,url);}
       });
     }
-    document.addEventListener('click',function(){hideTip();});
-    document.addEventListener('touchstart',function(){hideTip();},{passive:true});
-
-    function formatTime(s){var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec;}
+    document.addEventListener('click',function(e){if(!e.target.closest('.sloka-audio'))hideTip();});
 
     function stopAllAudio(){
       Object.keys(audioInstances).forEach(function(key){
@@ -497,12 +776,11 @@
       });
     }
     function toggleSlokaAudio(aid,audioUrl){
-      if(!audioUrl||audioUrl===''){console.log('No audio URL for',aid);return;}
+      if(!audioUrl||audioUrl===''){return;}
       var inst=audioInstances[aid];
       if(inst&&inst.audio&&!inst.audio.paused){inst.audio.pause();inst.playing=false;updateAudioIcon(aid,false);return;}
-      if(inst&&inst.audio&&inst.audio.paused){stopAllAudio();inst.audio.play().then(function(){inst.playing=true;updateAudioIcon(aid,true);inst.frame=requestAnimationFrame(function(){syncSlokaAudio(aid);});}).catch(function(e){console.log('Play failed:',e);});return;}
+      if(inst&&inst.audio&&inst.audio.paused){stopAllAudio();inst.audio.play().then(function(){inst.playing=true;updateAudioIcon(aid,true);inst.frame=requestAnimationFrame(function(){syncSlokaAudio(aid);});}).catch(function(){});return;}
       stopAllAudio();
-      console.log('Loading audio:',audioUrl);
       var audio=new Audio(audioUrl);
       audio.preload='metadata';
       var ctrl=document.getElementById('actrl'+aid);
@@ -512,12 +790,12 @@
         var prog=document.getElementById('aprog'+aid);if(prog)prog.max=Math.floor(audio.duration);
       });
       audio.addEventListener('ended',function(){var i=audioInstances[aid];if(i&&i.frame)cancelAnimationFrame(i.frame);updateAudioIcon(aid,false);});
-      audio.addEventListener('error',function(e){console.log('Audio error for',aid,':',e);updateAudioIcon(aid,false);});
+      audio.addEventListener('error',function(){updateAudioIcon(aid,false);});
       audioInstances[aid]={audio:audio,playing:true,frame:null};
       updateAudioIcon(aid,true);
       audio.play().then(function(){
         audioInstances[aid].frame=requestAnimationFrame(function(){syncSlokaAudio(aid);});
-      }).catch(function(e){console.log('Play error for',aid,':',e);updateAudioIcon(aid,false);});
+      }).catch(function(){updateAudioIcon(aid,false);});
     }
 
     function seekSlokaAudio(aid,val){var inst=audioInstances[aid];if(inst&&inst.audio)inst.audio.currentTime=parseInt(val);}
@@ -535,6 +813,63 @@
       if(icon){icon.innerHTML=playing?'<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>':'<path d="M8 5v14l11-7z"/>';}
     }
 
+    var allSlokasFlat=[];
+    groups.forEach(function(g,gi){
+      g.years.forEach(function(y,yi){
+        y.slokas.forEach(function(s,sidx){
+          allSlokasFlat.push({sloka:s,groupIdx:gi,yearIdx:yi,slokaIdx:sidx,groupName:g.name,yearName:y.name});
+        });
+      });
+    });
+
+    function searchSlokas(query){
+      var q=query.toLowerCase().trim();
+      if(!q)return[];
+      var terms=q.split(/\s+/);
+      return allSlokasFlat.filter(function(item){
+        var s=item.sloka;
+        var haystack=(s.title+' '+s.shloka+' '+s.meaning+' '+s.category).toLowerCase();
+        return terms.every(function(t){return haystack.indexOf(t)!==-1;});
+      }).map(function(item){
+        var s=item.sloka;
+        var snippet=s.meaning.length>120?s.meaning.substring(0,120)+'...':s.meaning;
+        return{title:s.title,group:item.groupName,year:item.yearName,groupIdx:item.groupIdx,snippet:snippet};
+      });
+    }
+
+    var searchInput=document.getElementById('searchInput');
+    var searchClear=document.getElementById('searchClear');
+    var searchResults=document.getElementById('searchResults');
+
+    searchInput.addEventListener('input',function(){
+      var q=searchInput.value;
+      searchClear.className='search-clear'+(q.length>0?' visible':'');
+      if(!q.trim()){searchResults.innerHTML='';return;}
+      var results=searchSlokas(q);
+      if(results.length===0){
+        searchResults.innerHTML='<div class="search-no-results">No shlokas found for "'+q.replace(/</g,'&lt;')+'"</div>';
+        return;
+      }
+      var html='';
+      results.forEach(function(r){
+        html+='<div class="search-result-item" onclick="openGroup('+r.groupIdx+')" tabindex="0" onkeydown="if(event.key===\'Enter\')openGroup('+r.groupIdx+')">';
+        html+='<div class="search-result-title">'+r.title+'</div>';
+        html+='<div class="search-result-meta">'+r.group+' &middot; '+r.year+'</div>';
+        html+='<div class="search-result-snippet">'+r.snippet.replace(/</g,'&lt;')+'</div>';
+        html+='</div>';
+      });
+      searchResults.innerHTML=html;
+    });
+
+    searchClear.addEventListener('click',function(){
+      searchInput.value='';searchClear.className='search-clear';
+      searchResults.innerHTML='';searchInput.focus();
+    });
+
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('.search-wrap'))searchResults.innerHTML='';
+    });
+
     render();
 
     var btt=document.getElementById('backToTop');
@@ -542,6 +877,7 @@
       if(window.scrollY>400)btt.classList.add('visible');
       else btt.classList.remove('visible');
     });
+    setTimeout(function(){var h=document.getElementById('themeHint');if(h){h.style.transition='opacity 0.4s';h.style.opacity='0';setTimeout(function(){h.style.display='none';},400);}},4000);
   </script>
 </body>
 </html>
